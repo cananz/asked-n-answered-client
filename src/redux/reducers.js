@@ -1,22 +1,32 @@
 import { combineReducers } from "redux";
 
 let initialState = {
-  inSession: false, //
+  inSession: false,
+
   loggedIn: false,
-  currentUser: nill,
-  projects: [],
-  sessionReport: {
-    start: '',
-    end: '',
-    project: nill,
-    pin: '',
-    host: '',
-    hostEmail: '',
-    progress: nill,
-    responses: [],
-    responseCount: ''
-  }
+  currentUser: {
+    id: null,
+    email: null,
+    firstName: null,
+    lastName: null,
+    avatar: null,
+    projects: []
+  },
+  // projects: [],
+  sessionReport: null
+    // {
+    //   start: '',
+    //   end: '',
+    //   project: null,
+    //   pin: '',
+    //   host: '',
+    //   hostEmail: '',
+    //   progress: null,
+    //   responses: [],
+    //   responseCount: ''
+    // }
 }
+
 const projectsReducer = (state = initialState.projects, action) => {
   switch (action.type) {
     case 'FETCHED_PROJECTS':
@@ -26,8 +36,10 @@ const projectsReducer = (state = initialState.projects, action) => {
 
   }
 }
-// const rootReducer = combineReducers({
-//   // inSession:
-// })
 
-export default projectsReducer
+const rootReducer = combineReducers({
+  // inSession:
+  projects: projectsReducer
+})
+
+export default rootReducer
