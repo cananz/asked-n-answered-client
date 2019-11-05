@@ -1,5 +1,6 @@
-const USER_URL = 'http://localhost:3000/users'
+// const USER_URL = 'http://localhost:3000/users'
 const PROJECT_URL = 'http://localhost:3000/projects'
+const SESSION_URL = 'http://localhost:3000/sessions/11U8J'
 
 //loaded -> fetching (fetch) -> fetched (updating store)
 function fetchingProjects() {
@@ -17,6 +18,29 @@ function fetchedProjects(projects) {
   }
 }
 
+function fetchingSession() {
+  return (dispatch) => {
+    fetch(SESSION_URL)
+    .then(response => response.json())
+    .then(session => dispatch(fetchedSession(session)))
+
+  }
+}
+
+function fetchedSession(session) {
+  return {
+    type: 'FETCHED_SESSION',
+    payload: session
+  }
+}
+
+
+function pinInputChange(value) {
+  return {
+    type: 'PIN_INPUT_CHANGE',
+    payload: value
+  }
+}
 
 
 
@@ -28,9 +52,4 @@ function fetchedProjects(projects) {
 
 
 
-
-
-
-
-
-export { fetchingProjects }
+export { fetchingProjects, fetchingSession, pinInputChange }
