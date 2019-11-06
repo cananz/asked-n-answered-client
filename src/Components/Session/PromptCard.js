@@ -33,13 +33,31 @@ export default class PromptCard extends React.Component {
         <Card.Content>
           <Form size='huge'>
             <Form.Group>
+            
               <Form.Field
-                label={prompt.correctAnswer.content}
+                label={prompt.answers[0].content}
                 control='input'
                 type='radio'
               />
 
-              
+              <Form.Field
+                label={prompt.answers[1].content}
+                control='input'
+                type='radio'
+              />
+
+              <Form.Field
+                label={prompt.answers[2].content}
+                control='input'
+                type='radio'
+              />
+
+              <Form.Field
+                label={prompt.answers[3].content}
+                control='input'
+                type='radio'
+              />
+
           </Form.Group>
           </Form>
         </Card.Content>

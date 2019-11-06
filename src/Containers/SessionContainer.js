@@ -20,12 +20,16 @@ class SessionContainer extends Component {
 
       return (
         <Container fluid>
+
           <NavBar />
+          
           <ProgressContainer />
-          {this.props.project ?
-            <PromptsContainer prompts={this.props.project.prompts} />
+
+          {this.props.prompts ?
+            <PromptsContainer prompts={this.props.prompts} />
           :
           null}
+
         </Container>)
   }
 }
