@@ -14,6 +14,7 @@ const NavBar = props => {
     <Header block>
       <Grid verticalAlign='middle'>
         <Grid.Column width={4}>
+          {/* left - user email */}
           <Statistic size='mini' color='teal'>
             <Statistic.Label>Hosted By</Statistic.Label>
             <Statistic.Value text>
@@ -23,8 +24,12 @@ const NavBar = props => {
           </Statistic>
         </Grid.Column>
 
-        <Grid.Column width={8} as={'h2'} textAlign='center'>{props.title ? props.title : null}</Grid.Column>
-
+        {/*  center - title */}
+        <Grid.Column width={8} as={'h1'} textAlign='center'>
+          {props.title ? props.title : null}
+          <Header as='h4'>{props.subtitle ? props.subtitle : null}</Header>
+        </Grid.Column>
+        
         <Grid.Column width={4}></Grid.Column>
 
       </Grid>
