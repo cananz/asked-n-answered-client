@@ -2,7 +2,7 @@ import { combineReducers } from "redux";
 
 let initialState = {
   session: {},
-  page: 'landing',
+  page: "",
   landingPage: {
     pinInput: '11U8J',
     liveSessions: [],
@@ -15,7 +15,7 @@ let initialState = {
 const pageReducer = (state = initialState.page, action) => {
   switch (action.type) {
     case 'LOAD_VIEW':
-      return { ...state, page: action.payload }
+      return { page: action.payload }
 
 
     default:

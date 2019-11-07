@@ -16,6 +16,7 @@ class LandingPage extends React.Component {
 
   componentDidMount() {
     this.props.fetchingLiveSessions()
+    this.props.changeView("landing")
   }
 
 
