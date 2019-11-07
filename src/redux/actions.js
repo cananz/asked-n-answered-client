@@ -1,6 +1,21 @@
 // const USER_URL = 'http://localhost:3000/users'
 const PROJECT_URL = 'http://localhost:3000/projects'
-const SESSION_URL = 'http://localhost:3000/sessions/11U8J'
+const SESSION_URL = 'http://localhost:3000/sessions'
+const LIVE_SESSIONS_URL = 'http://localhost:3000/sessions/live'
+// const SESSION_URL = 'http://localhost:3000/sessions/11U8J'
+
+function fetchingLiveSessions() {
+  return (dispatch) => {
+    fetch(LIVE_SESSIONS_URL)
+    .then(response => response.json())
+    .then(liveSessionsList => dispatch(fetchedLiveSessions(liveSessionsList)))
+  }
+}
+
+function fetchedLiveSessions(liveSessionsList) {
+  return {type: 'FETCHED_LIVE_SESSION_LIST', payload: liveSessionsList}
+}
+
 
 //loaded -> fetching (fetch) -> fetched (updating store)
 function fetchingProjects() {
@@ -18,11 +33,14 @@ function fetchedProjects(projects) {
   }
 }
 
-function fetchingSession() {
+function fetchingSession(pin) {
   return (dispatch) => {
-    fetch(SESSION_URL)
+    fetch(`${SESSION_URL}` + '/' + `${pin}`)
     .then(response => response.json())
-    .then(session => dispatch(fetchedSession(session)))
+    .then(sessionData => {
+      dispatch(fetchedSession(sessionData))
+      // dispatch(changeView('session'))
+    })
 
   }
 }
@@ -42,14 +60,27 @@ function pinInputChange(value) {
   }
 }
 
+function changeView(viewPage) {
+  return {
+    type: 'LOAD_VIEW',
+    payload: viewPage
+  }
+}
+
+
+function checkPin(pin) {
+  return (dispatch) => {
+    dispatch(toggled())
+  }
+}
+
+function toggled() {
+  return { type: 'PIN_IS_VALID' }
+}
 
 
 
 
 
 
-
-
-
-
-export { fetchingProjects, fetchingSession, pinInputChange }
+export { fetchingLiveSessions, fetchingProjects, fetchingSession, pinInputChange, changeView, checkPin }

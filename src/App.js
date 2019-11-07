@@ -1,27 +1,27 @@
 import React, { Component } from "react";
 import { Route, Switch, withRouter } from "react-router-dom";
 import {connect} from 'react-redux'
-import {fetchingSession} from './redux/actions'
-// import LandingPageContainer from './Containers/LandingPageContainer'
+// import {fetchingSession} from './redux/actions'
+import LandingPageContainer from './Containers/LandingPageContainer'
 import SessionContainer from './Containers/SessionContainer'
 
 
 class App extends Component {
 
   componentDidMount(){
-    this.props.fetchingSession()
+    // this.props.fetchingSession()
   }
 
   render() {
 
     return (
       <div className='App'>
-        {/* <Switch>
-          <Route exact path="/welcome" component={LandingPageContainer} />
-          <Route path="/session"
+        <Switch>
+          <Route path="/sessions/:pin"
             component={SessionContainer} />
-        </Switch> */}
-        <SessionContainer />
+          <Route path="/" component={LandingPageContainer} />
+        </Switch>
+        {/* <SessionContainer /> */}
       </div>
 
     )
@@ -31,10 +31,10 @@ class App extends Component {
 const mapDispatchToProps = dispatch => {
   return {
     // fetchingProjects: () => { dispatch( fetchingProjects() )},
-    fetchingSession: () => {dispatch( fetchingSession())}
+    // fetchingSession: () => {dispatch( fetchingSession())}
 
   }
 }
 
 
-export default withRouter(connect(null, mapDispatchToProps)(App))
+export default withRouter(App)

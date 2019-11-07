@@ -22,7 +22,7 @@ class SessionContainer extends Component {
         <Container fluid>
 
           <NavBar />
-          
+
           <ProgressContainer />
 
           {this.props.prompts ?
@@ -34,7 +34,7 @@ class SessionContainer extends Component {
   }
 }
 const mapStateToProps = state => {
-  return {...state.session}
+  return {...state.session, ...state.page}
 }
 
 // const mapDispatchToProps = dispatch => {
