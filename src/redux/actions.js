@@ -66,10 +66,25 @@ function fetchingSession(pin) {
 //on load of session page
 function fetchedSession(session) {
   return {
-    type: 'FETCHED_SESSION',
+    type: 'LOADED_QUIZ',
     payload: session
   }
 }
+
+// function fetchedSession(session) {
+//   return {
+//     type: 'FETCHED_SESSION',
+//     payload: session
+//   }
+// }
+
+
+
+
+
+
+
+
 
 //landingPage
 function pinInputChange(value) {

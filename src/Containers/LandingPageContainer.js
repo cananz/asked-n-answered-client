@@ -3,7 +3,7 @@ import {Link, withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {changeView, fetchingLiveSessions} from '../redux/actions'
 // import {pinInputChange} from '../red'
-import { Grid, Container, Header, Menu, Segment, Button, Message, Image, Card } from 'semantic-ui-react'
+import { Grid, Container, Header, Menu, Segment, Button, Message, Image, Card, Placeholder } from 'semantic-ui-react'
 import LoginForm from '../Components/LandingPage/LoginForm'
 import JoinSessionForm from '../Components/LandingPage/JoinSessionForm'
 
@@ -39,6 +39,7 @@ class LandingPage extends React.Component {
       <Grid verticalAlign='middle' columns={2}>
         <Grid.Row>
           <Grid.Column stretched width={5}>
+
             <Image src="http://media.virbcdn.com/cdn_images/resize_500x500/0d/00995da8bf77b1b9-doggywhitewebsite.jpg" />
           </Grid.Column>
 
@@ -65,7 +66,7 @@ class LandingPage extends React.Component {
       <Card.Group>
 
         <LoginForm />
-
+        
 
         <JoinSessionForm />
       </Card.Group>

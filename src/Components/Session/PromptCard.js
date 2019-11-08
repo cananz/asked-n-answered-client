@@ -10,39 +10,28 @@ class PromptCard extends React.Component {
     super(props)
     let {prompt} = this.props
     this.state = {
-      // selected: '',
+      selected: '',
 
         id: prompt.id,
         content: prompt.content,
         image: prompt.image,
-        answers: prompt.answers
+        correctAnswer: prompt.correctAnswer,
+        incorrectAnswers: prompt.incorrectAnswers
 
     }
   }
 
 
 
-  handleChange = (e, {value}) => {
-    e.preventDefault()
 
-    // let r = {...value}
+  handleChange = (e, {value}) => this.setState({selected: value})
 
-
-
-
-    this.setState( {...this.state, selected: !value['selected']})
-    debugger
-    console.log(this.state.answers)
-  this.props.onSelect({value})
-  // debugger
-
-  }
 
   render() {
 
     console.log('prompt card = ', this.state)
     let {prompt} = this.props
-    let {answers} = this.props.prompt
+    let {correctAnswer, incorrectAnswers} = this.props.prompt
     return (
 
       <Card>
@@ -57,58 +46,99 @@ class PromptCard extends React.Component {
               </Item.Extra>
             </Item.Content>
           </Item>
-
+          <Form>
+            <Form.Field>
+              <Radio
+                checked={this.state.selected === prompt.incorrectAnswers[1].id}
+                name={prompt.id}
+                label={prompt.incorrectAnswers[1].content}
+                value={prompt.incorrectAnswers[1].id}
+                onChange={this.handleChange}
+              />
+              <Radio
+                checked={this.state.selected === prompt.incorrectAnswers[2].id}
+                name={prompt.id}
+                label={prompt.incorrectAnswers[2].content}
+                value={prompt.incorrectAnswers[2].id}
+                onChange={this.handleChange}
+              />
+              <Radio
+                checked={this.state.selected === prompt.correctAnswer.id}
+                name={prompt.id}
+                label={prompt.correctAnswer.content}
+                value={prompt.correctAnswer.id}
+                onChange={this.handleChange}
+              />
+              <Radio
+                checked={this.state.selected === prompt.incorrectAnswers[0].id}
+                name={prompt.id}
+                label={prompt.incorrectAnswers[0].content}
+                value={prompt.incorrectAnswers[0].id}
+                onChange={this.handleChange}
+              />
+            </Form.Field>
+          </Form>
         </Card.Content>
-        <Card.Content>
-          <Form size='huge'>
-
-            <Form.Group grouped on>
-
-
-              <Form.Field
-                key={answers[0].id}
-                label={answers[0].content}
-                control={Radio}
-                name='answer'
-                value={answers[0].content}/>
-              <Form.Field
-                key={answers[1].id}
-                label={answers[1].content}
-                control={Radio}
-                name='answer'
-                value={answers[1].content}/>
-              <Form.Field
-                key={answers[2].id}
-                label={answers[2].content}
-                control={Radio}
-                name='answer'
-                value={answers[2].content}/>
-              <Form.Field
-                key={answers[3].id}
-                label={answers[3].content}
-                control={Radio}
-                name='answer'
-                value={answers[3].content}/>
-
-
-              {/* {this.state.answers ?
-                this.state.answers.map(answer =>
-                  <Form.Field
-                  key={answer.id}
-                  label={answer.content}
-                  control={Radio}
-                  name='answer'
-                  value={answer}/>)
-                :
-                <Loader />
-              } */}
+        {/* <Card.Content> */}
 
 
 
-            </Form.Group>
-            </Form>
 
-        </Card.Content>
+
+
+
+
+
+
+          {/* <Form size='huge'> */}
+
+          {/* <Form.Group grouped on> */}
+
+
+          {/* <Form.Field
+            key={answers[0].id}
+            label={answers[0].content}
+            control={Radio}
+            name='answer'
+            value={answers[0].content}/>
+            <Form.Field
+            key={answers[1].id}
+            label={answers[1].content}
+            control={Radio}
+            name='answer'
+            value={answers[1].content}/>
+            <Form.Field
+            key={answers[2].id}
+            label={answers[2].content}
+            control={Radio}
+            name='answer'
+            value={answers[2].content}/>
+            <Form.Field
+            key={answers[3].id}
+            label={answers[3].content}
+            control={Radio}
+            name='answer'
+          value={answers[3].content}/> */}
+
+
+          {/* {this.state.answers ?
+            this.state.answers.map(answer =>
+            <Form.Field
+            key={answer.id}
+            label={answer.content}
+            control={Radio}
+            name='answer'
+            value={answer}/>)
+            :
+            <Loader />
+          } */}
+
+
+
+          {/* </Form.Group> */}
+          {/* </Form> */}
+
+          {/* </Card.Content> */}
         </Card>
     )
   }

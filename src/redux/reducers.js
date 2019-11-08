@@ -16,6 +16,36 @@ let initialState = {
   currentUser: {}
 }
 
+let questionState = {
+  id: '',
+  content: '',
+  correctAnswer: {
+    id: '',
+    content: '',
+    correct: true
+  },
+  incorrectAnswers: []
+}
+
+let quizModeState = {
+  id: '',
+  pin: '',
+  projectId: '',
+  isLive: '',
+  host: '',
+  title: '',
+  subtitle: '',
+  prompts: []
+}
+
+
+let a = {
+  id: '',
+  promptId: '',
+  content: '',
+  correct: ''
+}
+
 const currentUserReducer = (state = initialState.currentUser, action) => {
   switch (action.type) {
     case 'SET_CURRENT_USER':
@@ -75,22 +105,37 @@ const sessionReducer = (state = initialState.session, action) => {
   }
 }
 
-// const assessmentReducer = (state = initialState.assessment, action) => {
-//   switch (action.type) {
-//     case 'SELECT_ANSWER':
-//       return {...state, ...action.payload}
-//       default:
-//       return state
-//   }
-// }
+const quizModeReducer = (state = quizModeState, action) => {
+
+  switch (action.type) {
+
+    case 'LOADED_QUIZ':
+      return {
+        ...state,
+        id: action.payload.id,
+        pin: action.payload.pin,
+        projectId: action.payload.projectId,
+        isLive: action.payload.is_live,
+        host: action.payload.host,
+        title: action.payload.title,
+        subtitle: action.payload.subtitle,
+        prompts: action.payload.prompts
+      }
+
+    default:
+      return state
+  }
+}
 
 
 const rootReducer = combineReducers(
   {
-  session: sessionReducer,
+  // session: sessionReducer,
+  session: quizModeReducer,
   landingPage: landingPageReducer,
   page: pageReducer,
   currentUser: currentUserReducer
+
   // assessment: assessmentReducer
   }
 )
