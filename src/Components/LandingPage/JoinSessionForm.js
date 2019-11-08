@@ -6,7 +6,7 @@ import {Link, withRouter} from 'react-router-dom'
 
 const handlePinSubmit = (e, props) => {
   e.preventDefault()
-  props.onSubmit(props.pinInput)
+  // props.onSubmit(props.pinInput)
   props.history.push("/sessions/" + props.pinInput)
 
 }
@@ -30,17 +30,15 @@ const JoinSessionForm = props => {
             type='text'
             onChange={e => props.onChange(e.target.value)}
           />
-          {/* <Link to={`/sessions/${props.pinInput}`}> */}
+
           <Button
             disabled={!props.pinIsValid}
             color='grey'
             size='massive'
-            type='submit'
-          >Join</Button>
-          {/* </Link> */}
+            type='submit'>
+          Join
+          </Button>
         </Form>
-
-
       </Card.Content>
 
     </Card>
@@ -61,8 +59,8 @@ const mapDispatchToProps = dispatch => {
     onChange: (pinInput) => {
       dispatch(pinInputChange(pinInput))
       dispatch(checkPin(pinInput))
-    },
-    onSubmit: (pin) => {dispatch(fetchingSession(pin))}
+    }
+    // onSubmit: (pin) => {dispatch(fetchingSession(pin))}
   }
 }
 

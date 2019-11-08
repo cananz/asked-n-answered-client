@@ -33,7 +33,7 @@ export default class PromptCard extends React.Component {
         <Card.Content>
           <Form size='huge'>
             <Form.Group>
-            
+
               <Form.Field
                 label={prompt.answers[0].content}
                 control='input'
@@ -64,5 +64,15 @@ export default class PromptCard extends React.Component {
         </Card>
     )
   }
+
+}
+
+const mapStateToProps = (state) => {
+  return {
+    
+  }
+}
+
+const mapDispatchToProps = dispatch => {
 
 }

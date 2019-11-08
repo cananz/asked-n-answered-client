@@ -1,22 +1,34 @@
 import { combineReducers } from "redux";
 
 let initialState = {
-  session: {},
+  session: {
+    // responses: 0,
+    prompts: []
+  },
   page: "",
   landingPage: {
-    pinInput: '11U8J',
+    pinInput: '', //11U8J
     liveSessions: [],
-    pinIsValid: true
-  }
+    pinIsValid: false,
+    emailText: 'marisa@email.com'
+  },
+  assessment: [],
+  currentUser: {}
 }
 
+const currentUserReducer = (state = initialState.currentUser, action) => {
+  switch (action.type) {
+    case 'SET_CURRENT_USER':
+      return {...action.payload}
 
+    default: return state
+  }
+}
 
 const pageReducer = (state = initialState.page, action) => {
   switch (action.type) {
     case 'LOAD_VIEW':
       return { page: action.payload }
-
 
     default:
       return state
@@ -32,7 +44,8 @@ const landingPageReducer = (state=initialState.landingPage, action) => {
       return {...state, pinIsValid: !state.pinIsValid}
     case 'PIN_INPUT_CHANGE':
       return {...state, pinInput: action.payload}
-
+    case 'LOGIN_INPUT_CHANGE':
+      return {...state, emailText: action.payload}
     default:
       return state
   }
@@ -52,20 +65,33 @@ const sessionReducer = (state = initialState.session, action) => {
   // debugger
   switch (action.type) {
     case 'FETCHED_SESSION':
-      return action.payload
+      return {...action.payload}
+    case 'SELECT_ANSWER':
+      return {
+        ...state, prompts: state.prompts.map(p => p.id === action.payload.id ? action.payload : p)
+      }
     default:
       return state
   }
 }
 
-
+// const assessmentReducer = (state = initialState.assessment, action) => {
+//   switch (action.type) {
+//     case 'SELECT_ANSWER':
+//       return {...state, ...action.payload}
+//       default:
+//       return state
+//   }
+// }
 
 
 const rootReducer = combineReducers(
   {
   session: sessionReducer,
   landingPage: landingPageReducer,
-  page: pageReducer
+  page: pageReducer,
+  currentUser: currentUserReducer
+  // assessment: assessmentReducer
   }
 )
 

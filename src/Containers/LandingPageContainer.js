@@ -15,7 +15,7 @@ class LandingPage extends React.Component {
   // }
 
   componentDidMount() {
-    this.props.fetchingLiveSessions()
+
     this.props.changeView("landing")
   }
 
@@ -89,7 +89,7 @@ class LandingPage extends React.Component {
     const mapDispatchToProps = (dispatch) => {
       return {
         changeView: (viewPage) => {dispatch(changeView(viewPage))},
-        fetchingLiveSessions: () => {dispatch(fetchingLiveSessions())}
+
         // pinInputChange: (value) => {dispatch(pinInputChange(value))}
   }
 }

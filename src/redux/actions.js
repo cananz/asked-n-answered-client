@@ -1,9 +1,10 @@
-// const USER_URL = 'http://localhost:3000/users'
+const USER_URL = 'http://localhost:3000/users/1'
 const PROJECT_URL = 'http://localhost:3000/projects'
 const SESSION_URL = 'http://localhost:3000/sessions'
 const LIVE_SESSIONS_URL = 'http://localhost:3000/sessions/live'
 // const SESSION_URL = 'http://localhost:3000/sessions/11U8J'
 
+//on app load - get list of pins for only live sessions
 function fetchingLiveSessions() {
   return (dispatch) => {
     fetch(LIVE_SESSIONS_URL)
@@ -12,8 +13,24 @@ function fetchingLiveSessions() {
   }
 }
 
+//on App load
 function fetchedLiveSessions(liveSessionsList) {
   return {type: 'FETCHED_LIVE_SESSION_LIST', payload: liveSessionsList}
+}
+
+function loggingIn() {
+  return dispatch => {
+    fetch(USER_URL)
+    .then(response => response.json())
+    .then(userData => dispatch(setCurrentUser(userData)))
+  }
+}
+
+function setCurrentUser(userData) {
+  return {
+    type: 'SET_CURRENT_USER',
+    payload: userData
+  }
 }
 
 
@@ -33,6 +50,7 @@ function fetchedProjects(projects) {
   }
 }
 
+//on load of session page (pin is 'this.props.match.params.pin')
 function fetchingSession(pin) {
   return (dispatch) => {
     fetch(`${SESSION_URL}` + '/' + `${pin}`)
@@ -45,6 +63,7 @@ function fetchingSession(pin) {
   }
 }
 
+//on load of session page
 function fetchedSession(session) {
   return {
     type: 'FETCHED_SESSION',
@@ -52,7 +71,7 @@ function fetchedSession(session) {
   }
 }
 
-
+//landingPage
 function pinInputChange(value) {
   return {
     type: 'PIN_INPUT_CHANGE',
@@ -60,6 +79,14 @@ function pinInputChange(value) {
   }
 }
 
+function loginInputChange(value) {
+  return {
+    type: 'LOGIN_INPUT_CHANGE',
+    payload: value
+  }
+}
+
+//what page is the app displaying now
 function changeView(viewPage) {
   return {
     type: 'LOAD_VIEW',
@@ -67,20 +94,28 @@ function changeView(viewPage) {
   }
 }
 
-
+//on landing page, check is the pin is a valid live session
 function checkPin(pin) {
   return (dispatch) => {
     dispatch(toggled())
   }
 }
-
+//landingPage - if pin is valid, toggle the button disabled
 function toggled() {
   return { type: 'PIN_IS_VALID' }
 }
 
+function selectedAnswer(answer) {
+  return {
+    type: 'SELECT_ANSWER',
+    payload: answer
+  }
+}
 
+function selectingAnswer(answer) {
+  return (dispatch) => {
+    dispatch(selectedAnswer(answer))
+  }
+}
 
-
-
-
-export { fetchingLiveSessions, fetchingProjects, fetchingSession, pinInputChange, changeView, checkPin }
+export { fetchingLiveSessions, fetchingProjects, fetchingSession, pinInputChange, changeView, checkPin, selectingAnswer, loggingIn, loginInputChange }
