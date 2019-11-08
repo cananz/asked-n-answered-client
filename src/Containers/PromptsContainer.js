@@ -18,7 +18,7 @@ class PromptsContainer extends Component {
         <Card.Group centered itemsPerRow={1}>
           {/* <PromptCard /> */}
           {/* {this.props.project ? <PromptCards project={this.props.pro} /> : <Loader active />} */}
-          {prompts.map((prompt, index) => <PromptCard key={index} prompt={prompt} />)}
+          {prompts.map((prompt, index) => <PromptCard key={index} promptId={prompt.id} />)}
         </Card.Group>
       </Container>
     )

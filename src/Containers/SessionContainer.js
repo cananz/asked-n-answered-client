@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 // import { Route, Switch, withRouter } from "react-router-dom";
 import {connect} from 'react-redux'
-import {changeView} from '../redux/actions'
+import {changeView, fetchingSession} from '../redux/actions'
 import {Container, Loader} from 'semantic-ui-react'
 import NavBar from '../Components/Session/NavBar'
 import ProgressContainer from '../Components/Session/ProgressBar'
@@ -11,8 +11,9 @@ import PromptsContainer from './PromptsContainer'
 
 class SessionContainer extends Component {
   componentDidMount(){
-    // this.props.fetchingSession()
+    this.props.fetchingSession(this.props.match.params.pin)
     this.props.changeView("session")
+    // debugger
   }
 
   render() {
@@ -26,21 +27,27 @@ class SessionContainer extends Component {
 
           <ProgressContainer />
 
-          {this.props.prompts ?
-            <PromptsContainer prompts={this.props.prompts} />
+          {this.props.session.prompts ?
+            <PromptsContainer prompts={this.props.session.prompts} />
           :
-          null}
+          <Loader />}
 
         </Container>)
   }
 }
 const mapStateToProps = state => {
-  return {...state.session, ...state.page}
+  return {
+    session: state.session,
+
+    page: state.page,
+    pin: state.landingPage.pinInput
+    // ...state.session, ...state.page, ...state
+  }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    // fetchingSession: () => {dispatch(fetchingSession())}
+    fetchingSession: (pin) => {dispatch(fetchingSession(pin))},
     changeView: (view) => {dispatch(changeView(view))}
   }
 }
