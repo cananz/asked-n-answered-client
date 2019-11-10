@@ -24,7 +24,10 @@ class PromptCard extends React.Component {
 
 
 
-  handleChange = (e, {value}) => this.setState({selected: value})
+  handleChange = (e, {value}) => {
+    this.setState({selected: value})
+
+  }
 
 
   render() {
@@ -79,66 +82,7 @@ class PromptCard extends React.Component {
             </Form.Field>
           </Form>
         </Card.Content>
-        {/* <Card.Content> */}
 
-
-
-
-
-
-
-
-
-
-          {/* <Form size='huge'> */}
-
-          {/* <Form.Group grouped on> */}
-
-
-          {/* <Form.Field
-            key={answers[0].id}
-            label={answers[0].content}
-            control={Radio}
-            name='answer'
-            value={answers[0].content}/>
-            <Form.Field
-            key={answers[1].id}
-            label={answers[1].content}
-            control={Radio}
-            name='answer'
-            value={answers[1].content}/>
-            <Form.Field
-            key={answers[2].id}
-            label={answers[2].content}
-            control={Radio}
-            name='answer'
-            value={answers[2].content}/>
-            <Form.Field
-            key={answers[3].id}
-            label={answers[3].content}
-            control={Radio}
-            name='answer'
-          value={answers[3].content}/> */}
-
-
-          {/* {this.state.answers ?
-            this.state.answers.map(answer =>
-            <Form.Field
-            key={answer.id}
-            label={answer.content}
-            control={Radio}
-            name='answer'
-            value={answer}/>)
-            :
-            <Loader />
-          } */}
-
-
-
-          {/* </Form.Group> */}
-          {/* </Form> */}
-
-          {/* </Card.Content> */}
         </Card>
     )
   }

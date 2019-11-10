@@ -120,16 +120,16 @@ function toggled() {
   return { type: 'PIN_IS_VALID' }
 }
 
-function selectedAnswer(answer) {
+function selectAnswer(answerId) {
   return {
     type: 'SELECT_ANSWER',
-    payload: answer
+    payload: answerId
   }
 }
 
 function selectingAnswer(answer) {
   return (dispatch) => {
-    dispatch(selectedAnswer(answer))
+    dispatch(selectAnswer(answer))
   }
 }
 
