@@ -10,8 +10,7 @@ class PromptCard extends React.Component {
     super(props)
     let {prompt} = this.props
     this.state = {
-      selected: '',
-
+        selected: prompt.selected,
         id: prompt.id,
         content: prompt.content,
         image: prompt.image,
@@ -24,9 +23,13 @@ class PromptCard extends React.Component {
 
 
 
-  handleChange = (e, {value}) => {
-    this.setState({selected: value})
 
+  handleChange = (e, {value}) => {
+    e.preventDefault()
+    this.setState({selected: value})
+    // console.log('handle change state = ', this.state.selected)
+    // debugger
+    this.props.onSelect({...this.state, selected: value})
   }
 
 
@@ -34,7 +37,8 @@ class PromptCard extends React.Component {
 
     console.log('prompt card = ', this.state)
     let {prompt} = this.props
-    let {correctAnswer, incorrectAnswers} = this.props.prompt
+    // let {correctAnswer, incorrectAnswers} = this.props.prompt
+    // console.log('handle change state = ', this.state.selected)
     return (
 
       <Card>
@@ -49,8 +53,12 @@ class PromptCard extends React.Component {
               </Item.Extra>
             </Item.Content>
           </Item>
+
           <Form>
             <Form.Field>
+
+              
+
               <Radio
                 checked={this.state.selected === prompt.incorrectAnswers[1].id}
                 name={prompt.id}
@@ -97,7 +105,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onSelect: (answer) => {dispatch(selectingAnswer(answer))}
+    onSelect: (promptObj) => {dispatch(selectingAnswer(promptObj))}
   }
 }
 

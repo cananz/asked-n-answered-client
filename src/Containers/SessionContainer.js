@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 import {changeView, fetchingSession} from '../redux/actions'
 import {Container, Loader} from 'semantic-ui-react'
 import NavBar from '../Components/Session/NavBar'
-import ProgressContainer from '../Components/Session/ProgressBar'
+import ProgressBar from '../Components/Session/ProgressBar'
 import PromptsContainer from './PromptsContainer'
 
 
@@ -25,7 +25,7 @@ class SessionContainer extends Component {
 
           <NavBar />
 
-          <ProgressContainer />
+          <ProgressBar />
 
           {this.props.session.prompts ?
             <PromptsContainer prompts={this.props.session.prompts} />
