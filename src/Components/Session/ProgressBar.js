@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 // import ProgressIcons from './ProgressIcon'
-import {Container, Progress} from 'semantic-ui-react'
+import {Container, Progress, Segment, Header} from 'semantic-ui-react'
 
 
 class ProgressBar extends Component {
@@ -11,9 +11,14 @@ class ProgressBar extends Component {
 
     console.log('ProgressBar = ',this.props);
 
+    // <Container textAlign='center'>
+    // {/* <Segment></Segment> */}
     return (
-      <Container textAlign='center'>
+
+      <Container text>
+
         <Progress
+          inverted
           size='large'
           progress='ratio'
           value={this.props.numOfAnswers}
@@ -24,6 +29,7 @@ class ProgressBar extends Component {
     )
   }
 }
+// </Container>
 
 
 

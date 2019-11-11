@@ -27,8 +27,7 @@ class PromptCard extends React.Component {
   handleChange = (e, {value}) => {
     e.preventDefault()
     this.setState({selected: value})
-    // console.log('handle change state = ', this.state.selected)
-    // debugger
+
     this.props.onSelect({...this.state, selected: value})
   }
 
@@ -37,58 +36,68 @@ class PromptCard extends React.Component {
 
     console.log('prompt card = ', this.state)
     let {prompt} = this.props
-    // let {correctAnswer, incorrectAnswers} = this.props.prompt
-    // console.log('handle change state = ', this.state.selected)
+
     return (
 
       <Card>
 
-        <Card.Content>
-          <Item.Image size='medium' src="https://amysantee.files.wordpress.com/2014/06/question-1828268_960_720.jpg" />
-          <Item>
-            <Item.Content verticalAlign='middle'>
-              <Item.Header as='h3'>{prompt ? prompt.content : null}</Item.Header>
 
-              <Item.Extra>
-              </Item.Extra>
-            </Item.Content>
-          </Item>
 
-          <Form>
-            <Form.Field>
 
-              
 
-              <Radio
-                checked={this.state.selected === prompt.incorrectAnswers[1].id}
-                name={prompt.id}
-                label={prompt.incorrectAnswers[1].content}
-                value={prompt.incorrectAnswers[1].id}
-                onChange={this.handleChange}
-              />
-              <Radio
-                checked={this.state.selected === prompt.incorrectAnswers[2].id}
-                name={prompt.id}
-                label={prompt.incorrectAnswers[2].content}
-                value={prompt.incorrectAnswers[2].id}
-                onChange={this.handleChange}
-              />
-              <Radio
-                checked={this.state.selected === prompt.correctAnswer.id}
-                name={prompt.id}
-                label={prompt.correctAnswer.content}
-                value={prompt.correctAnswer.id}
-                onChange={this.handleChange}
-              />
-              <Radio
-                checked={this.state.selected === prompt.incorrectAnswers[0].id}
-                name={prompt.id}
-                label={prompt.incorrectAnswers[0].content}
-                value={prompt.incorrectAnswers[0].id}
-                onChange={this.handleChange}
-              />
-            </Form.Field>
-          </Form>
+
+
+
+
+        <Card.Content verticalAlign='middle'>
+          <Image floated='left' verticalAlign='middle' size='medium' src="https://amysantee.files.wordpress.com/2014/06/question-1828268_960_720.jpg" />
+
+          <Card.Header>
+            {prompt ? prompt.content : null}
+          </Card.Header>
+
+
+
+
+          <Form.Field as='h3'>
+            <Radio
+              checked={this.state.selected === prompt.incorrectAnswers[1].id}
+              name={prompt.id}
+              label={prompt.incorrectAnswers[1].content}
+              value={prompt.incorrectAnswers[1].id}
+              onChange={this.handleChange}
+            />
+          </Form.Field>
+
+          <Form.Field as='h3'>
+            <Radio
+              checked={this.state.selected === prompt.incorrectAnswers[2].id}
+              name={prompt.id}
+              label={prompt.incorrectAnswers[2].content}
+              value={prompt.incorrectAnswers[2].id}
+              onChange={this.handleChange}
+            />
+          </Form.Field>
+
+          <Form.Field as='h3'>
+            <Radio
+              checked={this.state.selected === prompt.correctAnswer.id}
+              name={prompt.id}
+              label={prompt.correctAnswer.content}
+              value={prompt.correctAnswer.id}
+              onChange={this.handleChange}
+            />
+          </Form.Field>
+
+          <Form.Field as='h3'>
+            <Radio
+              checked={this.state.selected === prompt.incorrectAnswers[0].id}
+              name={prompt.id}
+              label={prompt.incorrectAnswers[0].content}
+              value={prompt.incorrectAnswers[0].id}
+              onChange={this.handleChange}
+            />
+          </Form.Field>
         </Card.Content>
 
         </Card>

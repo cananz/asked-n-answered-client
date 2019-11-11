@@ -33,20 +33,41 @@ function setCurrentUser(userData) {
   }
 }
 
-
-//loaded -> fetching (fetch) -> fetched (updating store)
-function fetchingProjects() {
-  return (dispatch) => {
-    fetch(PROJECT_URL)
+function fetchingUserProjects(userId) {
+  return dispatch => {
+    fetch(USER_URL + `/${userId}/projects`)
     .then(response => response.json())
-    .then(projectsList => dispatch(fetchedProjects(projectsList)))
+    .then(projectsData => dispatch(fetchedUserProjects(projectsData)))
   }
 }
 
-function fetchedProjects(projects) {
+function fetchedUserProjects(projectsData) {
   return {
-    type: 'FETCHED_PROJECTS',
-    payload: projects
+    type: 'FETCHED_USER_PROJECTS',
+    payload: projectsData
+  }
+}
+
+//loaded -> fetching (fetch) -> fetched (updating store)
+// function fetchingProject(projectId) {
+//   return (dispatch) => {
+//     fetch(PROJECT_URL + `/${projectId}`)
+//     .then(response => response.json())
+//     .then(projectData => dispatch(fetchedProject(projectData)))
+//   }
+// }
+
+function selectProject(project) {
+  return {
+    type: 'SELECT_PROJECT',
+    payload: project
+  }
+}
+
+function loadNewProjectForm() {
+  return {
+    type: 'NEW_PROJECT'
+
   }
 }
 
@@ -133,22 +154,18 @@ function selectingAnswer(promptObj) {
   }
 }
 
-function increaseAnswerCount(promptId) {
-  return {
-    type: 'INCREASE_ANSWER_COUNT',
-    payload: promptId
-  }
-}
 
 export {
   fetchingLiveSessions,
-  fetchingProjects,
+  selectProject,
+  fetchingUserProjects,
+  loadNewProjectForm,
   fetchingSession,
   pinInputChange,
   changeView,
   checkPin,
   selectingAnswer,
   loggingIn,
-  loginInputChange,
-  increaseAnswerCount
+  loginInputChange
+
 }

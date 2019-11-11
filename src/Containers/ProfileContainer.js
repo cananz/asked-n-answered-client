@@ -1,82 +1,37 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import {connect} from 'react-redux'
-import {loggingIn} from '../redux/actions'
-import {Form, Segment, Grid, Container, Message, Loader} from 'semantic-ui-react'
-import NavBar from '../Components/Session/NavBar'
-// import UserProjectList from '../Components/Session/ProgressBar'
+import {loggingIn, changeView} from '../redux/actions'
+import {Form, Segment, Grid, Container, Message, Loader, Menu, Sticky} from 'semantic-ui-react'
+import ProfileNavBar from '../Components/Profile/ProfileNavBar'
+import ProjectMenu from '../Components/Profile/ProjectMenu'
 // import PromptsContainer from './PromptsContainer'
 
 class ProfileContainer extends Component {
-  // constructor() {
-  //
-  // }
+
 
   componentDidMount(){
     this.props.loggingIn()
+
   }
 
   render() {
 
+    let {currentUser} = this.props
+    console.log('currentUser = ', currentUser)
+
     return (
 
-      <Container fluid textAlign='center'>
-      <Message color='grey' size="massive">
-      <Grid >
-      <Grid.Row>
-        <Grid.Column>
-          Header
-        </Grid.Column>
-      </Grid.Row>
+      <Container fluid>
+        <Sticky>
+          <ProfileNavBar />
+        </Sticky>
+        <Message color='grey' size="massive">
 
-      <Grid.Row>
-        <Grid.Column width={4}>
-        <Segment color='white' vertical inverted placeholder>
-          Project Cards Here
-          </Segment>
-        <Segment color='white' vertical inverted placeholder>
-          </Segment>
-        <Segment color='white' vertical inverted placeholder>
-          </Segment>
-        </Grid.Column>
 
-        <Grid.Column width={4}>
-        <Segment color='white' vertical inverted placeholder>
-          Project Cards Here
-          </Segment>
-        <Segment color='white' vertical inverted placeholder>
-          </Segment>
-        <Segment color='white' vertical inverted placeholder>
-          </Segment>
-        </Grid.Column>
+          <ProjectMenu />
+          
 
-        <Grid.Column width={4}>
-        <Segment color='white' vertical inverted placeholder>
-          Project Cards Here
-          </Segment>
-        <Segment color='white' vertical inverted placeholder>
-          </Segment>
-        <Segment color='white' vertical inverted placeholder>
-          </Segment>
-        </Grid.Column>
-
-        <Grid.Column width={4}>
-        <Segment color='white' vertical inverted placeholder>
-          Project Cards Here
-          </Segment>
-        <Segment color='white' vertical inverted placeholder>
-          </Segment>
-        <Segment color='white' vertical inverted placeholder>
-          </Segment>
-        </Grid.Column>
-      </Grid.Row>
-      </Grid>
-
-      <Container>
-      <Form>
-      
-      </Form>
-      </Container>
       </Message>
       </Container>
     )
@@ -92,14 +47,15 @@ class ProfileContainer extends Component {
 
 const mapStateToProps = state => {
   return {
-    ...state.currentUser
+    currentUser: {...state.currentUser},
+    page: {...state.page}
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
     loggingIn: () => {dispatch(loggingIn())},
-    // changeView: (view) => {dispatch(changeView(view))}
+    changeView: (view) => {dispatch(changeView(view))}
   }
 }
 

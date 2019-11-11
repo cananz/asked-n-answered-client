@@ -5,7 +5,6 @@ import React, {Component} from 'react'
 import {Container, Card, Loader} from 'semantic-ui-react'
 import PromptCard from '../Components/Session/PromptCard'
 
-
 class PromptsContainer extends Component {
 
 

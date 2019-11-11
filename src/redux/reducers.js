@@ -12,8 +12,26 @@ let initialState = {
     pinIsValid: false,
     emailText: 'marisa@email.com'
   },
-  assessment: [],
-  currentUser: {}
+  currentUser: {
+    id: '',
+    email: '',
+    firstName: '',
+    lastName: '',
+    activeProjectTab: 'new',
+    projects: []
+  }
+}
+
+let profileState = {
+  // page: profile,
+  activeProjectTab: 'new',
+  currentUser: {
+    id: '',
+    email: '',
+    firstName: '',
+    lastName: '',
+    projects: []
+  }
 }
 
 let questionState = {
@@ -49,7 +67,21 @@ let a = {
 const currentUserReducer = (state = initialState.currentUser, action) => {
   switch (action.type) {
     case 'SET_CURRENT_USER':
-      return {...action.payload}
+      return { ...state,
+
+          id: action.payload.id,
+          email: action.payload.email,
+          firstName: action.payload.first_name,
+          lastName: action.payload.last_name,
+
+          projects: action.payload.projects
+      }
+    case 'FETCHED_USER_PROJECTS':
+      return {...state, projects: action.payload}
+    case 'SELECT_PROJECT':
+      return {...state, activeProjectTab: action.payload}
+    case 'NEW_PROJECT':
+      return {...state, activeProjectTab: 'new'}
 
     default: return state
   }
@@ -140,10 +172,7 @@ const quizModeReducer = (state = quizModeState, action) => {
         })
 
       }
-    case 'INCREASE_ANSWER_COUNT':
-      return {
 
-      }
     default:
       return state
   }
