@@ -120,17 +120,35 @@ function toggled() {
   return { type: 'PIN_IS_VALID' }
 }
 
-function selectAnswer(answerId) {
+function selectAnswer(promptObj) {
   return {
     type: 'SELECT_ANSWER',
-    payload: answerId
+    payload: promptObj
   }
 }
 
-function selectingAnswer(answer) {
+function selectingAnswer(promptObj) {
   return (dispatch) => {
-    dispatch(selectAnswer(answer))
+    dispatch(selectAnswer(promptObj))
   }
 }
 
-export { fetchingLiveSessions, fetchingProjects, fetchingSession, pinInputChange, changeView, checkPin, selectingAnswer, loggingIn, loginInputChange }
+function increaseAnswerCount(promptId) {
+  return {
+    type: 'INCREASE_ANSWER_COUNT',
+    payload: promptId
+  }
+}
+
+export {
+  fetchingLiveSessions,
+  fetchingProjects,
+  fetchingSession,
+  pinInputChange,
+  changeView,
+  checkPin,
+  selectingAnswer,
+  loggingIn,
+  loginInputChange,
+  increaseAnswerCount
+}

@@ -110,7 +110,7 @@ const quizModeReducer = (state = quizModeState, action) => {
   switch (action.type) {
 
     case 'LOADED_QUIZ':
-      return {
+      return {//...action.payload
         ...state,
         id: action.payload.id,
         pin: action.payload.pin,
@@ -119,9 +119,31 @@ const quizModeReducer = (state = quizModeState, action) => {
         host: action.payload.host,
         title: action.payload.title,
         subtitle: action.payload.subtitle,
+        numOfPrompts: action.payload.prompts.length,
+        numOfAnswers: 0,
         prompts: action.payload.prompts
       }
+    case 'SELECT_ANSWER':
+      // let currentPrompt = state.prompts.find(prompt => prompt.id === action.payload.id)
+      // debugger
+      console.log('SELECT_ANSWER -> ', action.payload.selected)
+      return {
+        ...state,
+        // numOfAnswers: state.prompts.filter(prompt => prompt.selected).length,
+        prompts: state.prompts.map(promptObj => {
+          if (promptObj.id === action.payload.id) {
+            if (!promptObj.selected) {
+              state.numOfAnswers += 1
+            }
+            return action.payload//{
+          }else{return promptObj}
+        })
 
+      }
+    case 'INCREASE_ANSWER_COUNT':
+      return {
+
+      }
     default:
       return state
   }
