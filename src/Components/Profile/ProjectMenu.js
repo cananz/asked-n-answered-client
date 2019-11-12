@@ -3,7 +3,8 @@ import {connect} from 'react-redux'
 import {Link, Switch, Route, withRouter} from 'react-router-dom'
 import {Form, Segment, Grid, Container, Message, Loader, Menu} from 'semantic-ui-react'
 import {selectProject, loadNewProjectForm, fetchingUserProjects} from '../../redux/actions'
-import ProjectForm from './ProjectForm'
+import NewProjectForm from './NewProjectForm'
+import UpdateProjectForm from './UpdateProjectForm'
 
 
 class ProjectMenu extends Component {
@@ -57,16 +58,16 @@ class ProjectMenu extends Component {
         <Grid.Column stretched width={12}>
 
           {this.props.activeProjectTab === 'new' ?
-            <ProjectForm />
+            <NewProjectForm />
           :
-          <ProjectForm
+          <UpdateProjectForm
             projectId={this.props.activeProjectTab}
           />
           }
 
-          
+
         </Grid.Column>
-        </Grid>
+      </Grid>
 
 
     )

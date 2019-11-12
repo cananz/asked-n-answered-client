@@ -154,6 +154,34 @@ function selectingAnswer(promptObj) {
   }
 }
 
+function initiatingNewProject(projObj) {
+  return (dispatch) => {
+    fetch()
+
+    dispatch(initiatedNewProject(projObj))
+  }
+}
+
+function initiatedNewProject(projObj) {
+  return {
+    type: 'INITIATED_NEW_PROJECT',
+    payload: projObj
+  }
+}
+
+function changeDraftTitle(text) {
+  return {
+    type: 'CHANGE_DRAFT_TITLE',
+    payload: text
+  }
+}
+
+function changeDraftSubtitle(text) {
+  return {
+    type: 'CHANGE_DRAFT_SUBTITLE',
+    payload: text
+  }
+}
 
 export {
   fetchingLiveSessions,
@@ -166,6 +194,8 @@ export {
   checkPin,
   selectingAnswer,
   loggingIn,
-  loginInputChange
+  loginInputChange,
+  changeDraftTitle,
+  changeDraftSubtitle
 
 }

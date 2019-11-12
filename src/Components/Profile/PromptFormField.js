@@ -1,32 +1,48 @@
 import React from 'react'
-import {Card, Input, Form} from 'semantic-ui-react'
+import {Card, Input, Form, Button, Icon} from 'semantic-ui-react'
 
 const PromptFormField = props => {
 
+  let {content, img, correctAnswer, incorrectAnswer} = props.prompt
+
   return (
-    <Card fluid centered>
+    <Card fluid centered color='teal'>
       <Card.Content textAlign='center'>
+        <Button
+          floated='right'
+          icon
+          compact
+          color='red'
+          onClick={deletePrompt}
+        >
+          <Icon name='delete'/>
+        </Button>
         <Form>
           <Form.Input
             fluid
+            name='content'
             placeholder='Prompt or Question'
-            value={props.content ? props.content : ''}
+            value={content}
             label='Question'
+            onChange={e => props.addPrompt(e)}
           />
 
           <Form.Input
             fluid
+            name='img'
             placeholder='Paste image url here'
-            value={props.image ? props.image : ''}
+            value={img}
             label='Image'
+            onChange={e => props.addPrompt(e)}
           />
 
           <Form.Group widths='equal'>
             <Form.Field inline>
               <Input
                 fluid
+                name='correctAnswer'
                 placeholder='Answer Option A'
-                value={props.correctAnswer ? props.correctAnswer.content : ''}
+                value=''
                 label='A. '
               />
             </Form.Field>
@@ -34,8 +50,9 @@ const PromptFormField = props => {
             <Form.Field inline>
               <Input
                 fluid
+                name='incorrectAnswer'
                 placeholder='Answer Option B'
-                value={props.incorrectAnswers ? props.incorrectAnswers[0].content : ''}
+                value=''
                 label='B. '
               />
             </Form.Field>
@@ -46,8 +63,9 @@ const PromptFormField = props => {
             <Form.Field inline>
               <Input
                 fluid
+                name='incorrectAnswer'
                 placeholder='Answer Option C'
-                value={props.incorrectAnswers ? props.incorrectAnswers[1].content : ''}
+                value=''
                 label='C. '
               />
             </Form.Field>
@@ -55,8 +73,9 @@ const PromptFormField = props => {
             <Form.Field>
               <Input
                 fluid
+                name='incorrectAnswer'
                 placeholder='Answer Option D'
-                value={props.incorrectAnswers ? props.incorrectAnswers[2].content : ''}
+                value=''
                 label='D. '
               />
             </Form.Field>
@@ -66,6 +85,10 @@ const PromptFormField = props => {
       </Card.Content>
     </Card>
   )
+
+}
+
+const deletePrompt = (e) => {
 
 }
 

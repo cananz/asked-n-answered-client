@@ -74,7 +74,12 @@ const currentUserReducer = (state = initialState.currentUser, action) => {
           firstName: action.payload.first_name,
           lastName: action.payload.last_name,
 
-          projects: action.payload.projects
+          projects: action.payload.projects,
+          projectDraft: {
+            title: '',
+            subtitle: '',
+            user_id: action.payload.id
+          }
       }
     case 'FETCHED_USER_PROJECTS':
       return {...state, projects: action.payload}
@@ -82,7 +87,21 @@ const currentUserReducer = (state = initialState.currentUser, action) => {
       return {...state, activeProjectTab: action.payload}
     case 'NEW_PROJECT':
       return {...state, activeProjectTab: 'new'}
+    case 'CHANGE_DRAFT_TITLE':
+      return {...state, projectDraft: {
+        ...state.projectDraft,
+        title: action.payload
 
+      }}
+    case 'CHANGE_DRAFT_SUBTITLE':
+      return {...state, projectDraft: {
+        ...state.projectDraft,
+        subtitle: action.payload
+      }}
+    case 'INITIATED_NEW_PROJECT':
+      return {...state,
+        projects: [...state.projects, action.payload]
+      }
     default: return state
   }
 }

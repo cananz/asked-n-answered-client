@@ -13,7 +13,7 @@ class PromptCard extends React.Component {
         selected: prompt.selected,
         id: prompt.id,
         content: prompt.content,
-        image: prompt.image,
+        img: prompt.img,
         correctAnswer: prompt.correctAnswer,
         incorrectAnswers: prompt.incorrectAnswers
 
@@ -49,8 +49,8 @@ class PromptCard extends React.Component {
 
 
 
+      <Image size='medium' src={prompt.img} />
         <Card.Content verticalAlign='middle'>
-          <Image floated='left' verticalAlign='middle' size='medium' src="https://amysantee.files.wordpress.com/2014/06/question-1828268_960_720.jpg" />
 
           <Card.Header>
             {prompt ? prompt.content : null}
