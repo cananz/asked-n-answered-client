@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {Segment, Form, Card, Loader, Button} from 'semantic-ui-react'
 import PromptFormField from './PromptFormField'
 import PromptsContainer from '../../Containers/PromptsContainer'
-import {changeDraftTitle, changeDraftSubtitle} from '../../redux/actions'
+import {changeDraftTitle, changeDraftSubtitle, initiatingNewProject} from '../../redux/actions'
 
 
 class NewProjectForm extends Component {
@@ -54,39 +54,26 @@ class NewProjectForm extends Component {
                 placeholder='Subtitle'
                 onChange={e => this.props.onSubtitleChange(e.target.value)}
               />
-              <Form.Button
-                type='submit'
-                content='Save'
-                floated='right'
-              />
+
             </Form>
+
           </Card.Content>
 
         </Card>
 
-        {/* <PromptFormField
-          addPrompt={this.addPrompt}
-        prompt={newPrompt} /> */}
-        {/* <PromptFormField prompt={newPrompt} />
-          <PromptFormField prompt={newPrompt} />
-          <PromptFormField prompt={newPrompt} />
-        <PromptFormField prompt={newPrompt} /> */}
+
 
 
 
         <Button
-          content='Add Prompt or Question'
-          floated='left'
+          content='Create Project'
+          fluid
           color='teal'
-          
+          onClick={e => this.props.onSubmit({...this.props.projectDraft})
 
+          }
         />
 
-        <Button
-          floated='right'
-          content='Save Project'
-          color='teal'
-        />
       </Segment>
 
     )
@@ -99,7 +86,6 @@ const mapStateToProps = (state) => {
   return {
     activeProjectTab: state.currentUser.activeProjectTab,
     projectDraft: state.currentUser.projectDraft
-
   }
 }
 
@@ -108,7 +94,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = dispatch => {
   return {
     onTitleChange: (text) => {dispatch(changeDraftTitle(text))},
-    onSubtitleChange: (text) => {dispatch(changeDraftSubtitle(text))}
+    onSubtitleChange: (text) => {dispatch(changeDraftSubtitle(text))},
+    onSubmit: (projObj) => {dispatch(initiatingNewProject(projObj))}
   }
 }
 

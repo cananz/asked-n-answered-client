@@ -7,11 +7,11 @@ import PromptsContainer from '../../Containers/PromptsContainer'
 
 class UpdateProjectForm extends Component {
 
-constructor(props) {
-  super(props)
+  constructor(props) {
+    super(props)
+    this.state = ({...this.props})
 
-
-}
+  }
 
           render() {
             console.log('my projects props for prompts = ', this.props.project.prompts);

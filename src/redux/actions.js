@@ -155,10 +155,22 @@ function selectingAnswer(promptObj) {
 }
 
 function initiatingNewProject(projObj) {
+  let configObj = {
+    method: 'POST',
+    headers: {
+      "Content-Type" : "application/json",
+      "Accept" : "application/json"
+    },
+    body: JSON.stringify({...projObj})
+  }
   return (dispatch) => {
-    fetch()
 
-    dispatch(initiatedNewProject(projObj))
+    fetch(`${USER_URL}/projects`, configObj)
+    .then(response => response.json())
+    .then(projObj => {
+      dispatch(initiatedNewProject(projObj))
+      dispatch(selectProject(projObj.id))
+    })
   }
 }
 
@@ -196,6 +208,7 @@ export {
   loggingIn,
   loginInputChange,
   changeDraftTitle,
-  changeDraftSubtitle
+  changeDraftSubtitle,
+  initiatingNewProject
 
 }
