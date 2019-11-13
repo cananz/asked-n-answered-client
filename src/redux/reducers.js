@@ -109,7 +109,10 @@ const currentUserReducer = (state = initialState.currentUser, action) => {
         }
     case 'ADDED_PROMPT_TO_PROJECT':
       return {...state,
-        projects: [...state.projects, action.payload]
+        projects: action.payload//[...state.projects, action.payload]
+      }
+    case 'DELETED_PROMPT_FROM_PROJECT':
+      return {...state, projects: [...state.projects.filter(proj => proj.id !== action.payload.id), action.payload]
       }
 
     default: return state

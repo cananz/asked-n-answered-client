@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {Segment, Form, Card, Placeholder, Loader, Image, Container, Icon, Button} from 'semantic-ui-react'
 import PromptFormField from './PromptFormField'
 import PromptsContainer from '../../Containers/PromptsContainer'
-import {showPromptForm, addingPromptToProject} from '../../redux/actions'
+import {showPromptForm, addingPromptToProject, deletingPrompt} from '../../redux/actions'
 
 
 class UpdateProjectForm extends Component {
@@ -63,6 +63,11 @@ class UpdateProjectForm extends Component {
 
   }
 
+  deletePrompt = e => {
+    console.log('delete', e.target.parentElement);
+    this.props.deletePrompt(e.target.parentElement.id)
+  }
+
 
           render() {
             console.log('my projects props for prompts = ', this.props.project.prompts);
@@ -86,7 +91,7 @@ class UpdateProjectForm extends Component {
 
                       <Image
                       fluid
-                      label={{ as: 'a', color: 'red', corner: 'right', icon: 'delete' }}
+                      label={{ as: 'a', id: prompt.id, color: 'red', corner: 'right', icon: 'delete', onClick: this.deletePrompt}}
                       src={prompt.img ? prompt.img : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbu0YXGvzhEkGw5NFoj4DGiTeoq3FlBrdBGgzFbdSJiLipQQly&s"} />
                       <Card.Content verticalAlign='middle'>
                         <Card.Header>{prompt.content}</Card.Header>
@@ -143,7 +148,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = dispatch => {
   return {
     showPromptForm: () => {dispatch(showPromptForm())},
-    submitPrompt: (pObj) => {dispatch(addingPromptToProject(pObj))}
+    submitPrompt: (pObj) => {dispatch(addingPromptToProject(pObj))},
+    deletePrompt: (promptId) => {dispatch(deletingPrompt(promptId))}
   }
 }
 

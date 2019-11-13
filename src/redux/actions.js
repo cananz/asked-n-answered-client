@@ -2,6 +2,7 @@ const USER_URL = 'http://localhost:3000/users/1'
 const PROJECT_URL = 'http://localhost:3000/projects'
 const SESSION_URL = 'http://localhost:3000/sessions'
 const LIVE_SESSIONS_URL = 'http://localhost:3000/sessions/live'
+const PROMPT_URL = 'http://localhost:3000/prompts'
 // const SESSION_URL = 'http://localhost:3000/sessions/11U8J'
 
 //on app load - get list of pins for only live sessions
@@ -214,8 +215,9 @@ function addingPromptToProject(promptObj) {
   return (dispatch) => {
     fetch(`${PROJECT_URL}/${promptObj.project_id}`, configObj)
     .then(response => response.json())
-    .then(returnObj => {
-      dispatch(addedPrompt(returnObj))
+    .then(returnProjectsList => {
+      dispatch(addedPrompt(returnProjectsList))
+      
       dispatch(showPromptForm())
     })
   }
@@ -225,6 +227,31 @@ function addedPrompt(promptObj) {
   return {
     type: 'ADDED_PROMPT_TO_PROJECT',
     payload: promptObj
+  }
+}
+
+function deletingPrompt(promptId) {
+  let configObj = {
+    method: 'DELETE',
+    headers: {
+      "Content-Type" : "application/json",
+      "Accept" : "application/json"
+    }
+  }
+  return (dispatch) => {
+    fetch(`${PROMPT_URL}/${promptId}`, configObj)
+    .then(response => response.json())
+    .then(returnObj => {
+      dispatch(deletedPrompt(returnObj))
+
+    })
+  }
+}
+
+function deletedPrompt(returnObj) {
+  return {
+    type: 'DELETED_PROMPT_FROM_PROJECT',
+    payload: returnObj
   }
 }
 
@@ -244,5 +271,6 @@ export {
   changeDraftTitle,
   changeDraftSubtitle,
   initiatingNewProject,
-  showPromptForm
+  showPromptForm,
+  deletingPrompt
 }
