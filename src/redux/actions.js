@@ -34,6 +34,18 @@ function setCurrentUser(userData) {
   }
 }
 
+function logOut() {
+  return dispatch => {
+    dispatch(loggedOut())
+  }
+}
+
+function loggedOut() {
+  return {
+    type: 'LOG_OUT'
+  }  
+}
+
 function fetchingUserProjects(userId) {
   return dispatch => {
     fetch(USER_URL + `/${userId}/projects`)
@@ -281,5 +293,6 @@ export {
   initiatingNewProject,
   showPromptForm,
   deletingPrompt,
-  changePromptDraft
+  changePromptDraft,
+  logOut
 }

@@ -7,7 +7,7 @@ import ProgressBar from './ProgressBar'
 const NavBar = props => {
   // let {title, subtitle, user} = props.session.project
 
-  console.log('NavBar props = ', props)
+  // console.log('NavBar props = ', props)
 
   // console.log('NavBar props.session.project = ', props.project.title)
   return (

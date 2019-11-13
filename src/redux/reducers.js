@@ -137,6 +137,8 @@ const currentUserReducer = (state = initialState.currentUser, action) => {
     case 'DELETED_PROMPT_FROM_PROJECT':
       return {...state, projects: [...state.projects.filter(proj => proj.id !== action.payload.id), action.payload]
       }
+    case 'LOG_OUT':
+      return initialState.currentUser
 
     default: return state
   }

@@ -9,13 +9,13 @@ class LoginForm extends Component {
 
   handleLogIn = (e) => {
     e.preventDefault()
-    console.log(this.props)
+    // console.log(this.props)
     this.props.history.push("/profile/" + '1')
   }
 
   render() {
     let {props} = this
-  console.log('login form props = ', props.history)
+  // console.log('login form props = ', props.history)
   return (
 
 
