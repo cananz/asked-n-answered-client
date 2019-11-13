@@ -58,12 +58,12 @@ let quizModeState = {
 }
 
 
-let a = {
-  id: '',
-  promptId: '',
-  content: '',
-  correct: ''
-}
+// let a = {
+//   id: '',
+//   promptId: '',
+//   content: '',
+//   correct: ''
+// }
 
 const currentUserReducer = (state = initialState.currentUser, action) => {
   switch (action.type) {

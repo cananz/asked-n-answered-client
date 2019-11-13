@@ -14,7 +14,9 @@ class UpdateProjectForm extends Component {
       content: '',
       img: '',
       correctAnswer: '',
-      incorrectAnswers: []
+      incorrectAnswerB: '',
+      incorrectAnswerC: '',
+      incorrectAnswerD: ''
 
     }})
 
@@ -32,8 +34,12 @@ class UpdateProjectForm extends Component {
       this.setState({promptDraft: {...this.state.promptDraft, img: value}})
     } else if (name === 'correctAnswer') {
       this.setState({promptDraft: {...this.state.promptDraft, correctAnswer: value}})
-    } else if (name === 'incorrectAnswer') {
-      this.setState({promptDraft: {...this.state.promptDraft, incorrectAnswers: [...this.state.promptDraft.incorrectAnswers, value]}})
+    } else if (name === 'incorrectAnswerB') {
+      this.setState({promptDraft: {...this.state.promptDraft, incorrectAnswerB: value}})
+    } else if (name === 'incorrectAnswerC') {
+      this.setState({promptDraft: {...this.state.promptDraft, incorrectAnswerC: value}})
+    }else if (name === 'incorrectAnswerD') {
+      this.setState({promptDraft: {...this.state.promptDraft, incorrectAnswerD: value}})
     }
 
   }
@@ -41,8 +47,19 @@ class UpdateProjectForm extends Component {
   submitPrompt = e => {
     e.preventDefault()
     console.log(this.state.promptDraft)
-    let promptObj = {...this.state.promptDraft, project_id: this.state.activeProjectTab}
-    this.props.submitPrompt(promptObj)
+    let {promptDraft} = this.state
+    // let incorrectAnswers = [promptDraft.incorrectAnswerB, promptDraft.incorrectAnswerC, promptDraft.incorrectAnswerD]
+
+    let promptToSend = {
+      content: promptDraft.content,
+      img: promptDraft.img,
+      correctAnswer: promptDraft.correctAnswer,
+      incorrectAnswers: [promptDraft.incorrectAnswerB, promptDraft.incorrectAnswerC, promptDraft.incorrectAnswerD],
+      project_id: this.state.activeProjectTab
+    }
+
+
+    this.props.submitPrompt(promptToSend)
 
   }
 
@@ -62,8 +79,15 @@ class UpdateProjectForm extends Component {
 
                   <Card.Group centered>
 
-                    {this.props.project.prompts.map(prompt => (<Card key={prompt.id} centered>
-                      <Image fluid src={prompt.img ? prompt.img : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbu0YXGvzhEkGw5NFoj4DGiTeoq3FlBrdBGgzFbdSJiLipQQly&s"} />
+                    {this.props.project.prompts.map(prompt => (<Card
+                      key={prompt.id}
+                      centered
+                      >
+
+                      <Image
+                      fluid
+                      label={{ as: 'a', color: 'red', corner: 'right', icon: 'delete' }}
+                      src={prompt.img ? prompt.img : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbu0YXGvzhEkGw5NFoj4DGiTeoq3FlBrdBGgzFbdSJiLipQQly&s"} />
                       <Card.Content verticalAlign='middle'>
                         <Card.Header>{prompt.content}</Card.Header>
                       </Card.Content>
@@ -87,6 +111,7 @@ class UpdateProjectForm extends Component {
                       onChange={this.handlePromptFormChanges}
                       promptDraft={this.state.promptDraft}
                       onSubmit={this.submitPrompt}
+                      close={this.props.showPromptForm}
                     /> :
 
                     <Button fluid color='teal' onClick={this.props.showPromptForm}>

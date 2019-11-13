@@ -7,17 +7,14 @@ const PromptFormField = props => {
 
   return (
     <Card fluid centered color='teal'>
+      <Button
+        icon
+        onClick={props.close}
+        floated='right'
+      compact>
+        <Icon name='delete' color='red' />
+      </Button>
       <Card.Content textAlign='center'>
-        {/* <Button
-          floated='right'
-          icon
-          compact
-          color='red'
-          onClick={deletePrompt}
-          >
-
-          <Icon name='delete'/>
-        </Button> */}
         <Form onSubmit={props.onSubmit}>
           <Form.Input
             onChange={props.onChange}
@@ -54,7 +51,7 @@ const PromptFormField = props => {
               <Input
                 onChange={props.onChange}
                 fluid
-                name='incorrectAnswer'
+                name='incorrectAnswerB'
                 placeholder='Answer Option B'
                 value={props.promptDraft.incorrectAnswerB}
                 label='B. '
@@ -68,7 +65,7 @@ const PromptFormField = props => {
               <Input
                 onChange={props.onChange}
                 fluid
-                name='incorrectAnswer'
+                name='incorrectAnswerC'
                 placeholder='Answer Option C'
                 value={props.promptDraft.incorrectAnswerC}
                 label='C. '
@@ -79,7 +76,7 @@ const PromptFormField = props => {
               <Input
                 onChange={props.onChange}
                 fluid
-                name='incorrectAnswer'
+                name='incorrectAnswerD'
                 placeholder='Answer Option D'
                 value={props.promptDraft.incorrectAnswerD}
                 label='D. '
@@ -87,7 +84,7 @@ const PromptFormField = props => {
             </Form.Field>
           </Form.Group>
 
-          <Form.Button type="submit" />
+          <Form.Button type="submit" content='Add' />
 
         </Form>
       </Card.Content>
