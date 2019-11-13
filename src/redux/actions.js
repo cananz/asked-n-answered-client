@@ -71,6 +71,12 @@ function loadNewProjectForm() {
   }
 }
 
+function showPromptForm() {
+  return {
+    type: 'TOGGLE_SHOW_PROMPT_FORM'
+  }
+}
+
 //on load of session page (pin is 'this.props.match.params.pin')
 function fetchingSession(pin) {
   return (dispatch) => {
@@ -195,7 +201,35 @@ function changeDraftSubtitle(text) {
   }
 }
 
+function addingPromptToProject(promptObj) {
+  let configObj = {
+    method: 'PATCH',
+    headers: {
+      "Content-Type" : "application/json",
+      "Accept" : "application/json"
+    },
+    body: JSON.stringify({...promptObj})
+  }
+
+  return (dispatch) => {
+    fetch(`${PROJECT_URL}/${promptObj.project_id}`, configObj)
+    .then(response => response.json())
+    .then(returnObj => {
+      dispatch(addedPrompt(returnObj))
+      dispatch(showPromptForm())
+    })
+  }
+}
+
+function addedPrompt(promptObj) {
+  return {
+    type: 'ADDED_PROMPT_TO_PROJECT',
+    payload: promptObj
+  }
+}
+
 export {
+  addingPromptToProject,
   fetchingLiveSessions,
   selectProject,
   fetchingUserProjects,
@@ -209,6 +243,6 @@ export {
   loginInputChange,
   changeDraftTitle,
   changeDraftSubtitle,
-  initiatingNewProject
-
+  initiatingNewProject,
+  showPromptForm
 }

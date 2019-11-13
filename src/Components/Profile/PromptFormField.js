@@ -3,56 +3,60 @@ import {Card, Input, Form, Button, Icon} from 'semantic-ui-react'
 
 const PromptFormField = props => {
 
-  let {content, img, correctAnswer, incorrectAnswer} = props.prompt
+  // let {content, img, correctAnswer, incorrectAnswer} = props.prompt
 
   return (
     <Card fluid centered color='teal'>
       <Card.Content textAlign='center'>
-        <Button
+        {/* <Button
           floated='right'
           icon
           compact
           color='red'
           onClick={deletePrompt}
-        >
+          >
+
           <Icon name='delete'/>
-        </Button>
-        <Form>
+        </Button> */}
+        <Form onSubmit={props.onSubmit}>
           <Form.Input
+            onChange={props.onChange}
             fluid
             name='content'
             placeholder='Prompt or Question'
-            value={content}
+            value={props.promptDraft.content}
             label='Question'
-            onChange={e => props.addPrompt(e)}
+
           />
 
           <Form.Input
+            onChange={props.onChange}
             fluid
             name='img'
             placeholder='Paste image url here'
-            value={img}
+            value={props.promptDraft.img}
             label='Image'
-            onChange={e => props.addPrompt(e)}
           />
 
           <Form.Group widths='equal'>
             <Form.Field inline>
               <Input
+                onChange={props.onChange}
                 fluid
                 name='correctAnswer'
                 placeholder='Answer Option A'
-                value=''
+                value={props.promptDraft.correctAnswer}
                 label='A. '
               />
             </Form.Field>
 
             <Form.Field inline>
               <Input
+                onChange={props.onChange}
                 fluid
                 name='incorrectAnswer'
                 placeholder='Answer Option B'
-                value=''
+                value={props.promptDraft.incorrectAnswerB}
                 label='B. '
               />
             </Form.Field>
@@ -62,24 +66,28 @@ const PromptFormField = props => {
           <Form.Group widths='equal'>
             <Form.Field inline>
               <Input
+                onChange={props.onChange}
                 fluid
                 name='incorrectAnswer'
                 placeholder='Answer Option C'
-                value=''
+                value={props.promptDraft.incorrectAnswerC}
                 label='C. '
               />
             </Form.Field>
 
             <Form.Field>
               <Input
+                onChange={props.onChange}
                 fluid
                 name='incorrectAnswer'
                 placeholder='Answer Option D'
-                value=''
+                value={props.promptDraft.incorrectAnswerD}
                 label='D. '
               />
             </Form.Field>
           </Form.Group>
+
+          <Form.Button type="submit" />
 
         </Form>
       </Card.Content>

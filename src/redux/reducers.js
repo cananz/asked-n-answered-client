@@ -18,7 +18,8 @@ let initialState = {
     firstName: '',
     lastName: '',
     activeProjectTab: 'new',
-    projects: []
+    projects: [],
+    addPrompt: false
   }
 }
 
@@ -102,6 +103,15 @@ const currentUserReducer = (state = initialState.currentUser, action) => {
       return {...state,
         projects: [...state.projects, action.payload]
       }
+    case 'TOGGLE_SHOW_PROMPT_FORM':
+      return {...state,
+          addPrompt: !state.addPrompt
+        }
+    case 'ADDED_PROMPT_TO_PROJECT':
+      return {...state,
+        projects: [...state.projects, action.payload]
+      }
+
     default: return state
   }
 }
