@@ -3,22 +3,23 @@ import {connect} from 'react-redux'
 import {Segment, Form, Card, Placeholder, Loader, Image, Container, Icon, Button} from 'semantic-ui-react'
 import PromptFormField from './PromptFormField'
 import PromptsContainer from '../../Containers/PromptsContainer'
-import {showPromptForm, addingPromptToProject, deletingPrompt} from '../../redux/actions'
+import {showPromptForm, addingPromptToProject, deletingPrompt, changePromptDraft} from '../../redux/actions'
 
 
 class UpdateProjectForm extends Component {
 
   constructor(props) {
     super(props)
-    this.state = ({...this.props, promptDraft: {
-      content: '',
-      img: '',
-      correctAnswer: '',
-      incorrectAnswerB: '',
-      incorrectAnswerC: '',
-      incorrectAnswerD: ''
+    this.state = ({...this.props
+      //, promptDraft: {
+      // content: '',
+      // img: '',
+      // correctAnswer: '',
+      // incorrectAnswerB: '',
+      // incorrectAnswerC: '',
+      // incorrectAnswerD: ''}
 
-    }})
+    })
 
   }
 
@@ -29,25 +30,33 @@ class UpdateProjectForm extends Component {
   handlePromptFormChanges = (e) => {
     let {name, value} = e.target
     if (name === 'content') {
-      this.setState({promptDraft: {...this.state.promptDraft, content: value}})
+        this.props.handlePromptChange({content: value})
+      // this.setState({promptDraft: {...this.state.promptDraft, content: value}})
     } else if (name === 'img') {
-      this.setState({promptDraft: {...this.state.promptDraft, img: value}})
+        this.props.handlePromptChange({img: value})
+      // this.setState({promptDraft: {...this.state.promptDraft, img: value}})
     } else if (name === 'correctAnswer') {
-      this.setState({promptDraft: {...this.state.promptDraft, correctAnswer: value}})
+        this.props.handlePromptChange({correctAnswer: value})
+      // this.setState({promptDraft: {...this.state.promptDraft, correctAnswer: value}})
     } else if (name === 'incorrectAnswerB') {
-      this.setState({promptDraft: {...this.state.promptDraft, incorrectAnswerB: value}})
+        this.props.handlePromptChange({incorrectAnswerB: value})
+      // this.setState({promptDraft: {...this.state.promptDraft, incorrectAnswerB: value}})
     } else if (name === 'incorrectAnswerC') {
-      this.setState({promptDraft: {...this.state.promptDraft, incorrectAnswerC: value}})
+        this.props.handlePromptChange({incorrectAnswerC: value})
+      // this.setState({promptDraft: {...this.state.promptDraft, incorrectAnswerC: value}})
     }else if (name === 'incorrectAnswerD') {
-      this.setState({promptDraft: {...this.state.promptDraft, incorrectAnswerD: value}})
+        this.props.handlePromptChange({incorrectAnswerD: value})
+      // this.setState({promptDraft: {...this.state.promptDraft, incorrectAnswerD: value}})
     }
+
+    // this.props.handlePromptChange(this.state.promptDraft)
 
   }
 
   submitPrompt = e => {
     e.preventDefault()
     console.log(this.state.promptDraft)
-    let {promptDraft} = this.state
+    let {promptDraft} = this.props
     // let incorrectAnswers = [promptDraft.incorrectAnswerB, promptDraft.incorrectAnswerC, promptDraft.incorrectAnswerD]
 
     let promptToSend = {
@@ -114,7 +123,7 @@ class UpdateProjectForm extends Component {
                   {this.props.addPrompt ?
                     <PromptFormField
                       onChange={this.handlePromptFormChanges}
-                      promptDraft={this.state.promptDraft}
+                      promptDraft={this.props.promptDraft}
                       onSubmit={this.submitPrompt}
                       close={this.props.showPromptForm}
                     /> :
@@ -139,7 +148,8 @@ const mapStateToProps = (state) => {
   return {
     activeProjectTab: state.currentUser.activeProjectTab,
     project: state.currentUser.projects.find(proj => proj.id === state.currentUser.activeProjectTab),
-    addPrompt: state.currentUser.addPrompt
+    addPrompt: state.currentUser.addPrompt,
+    promptDraft: state.currentUser.promptDraft
   }
 }
 
@@ -149,7 +159,8 @@ const mapDispatchToProps = dispatch => {
   return {
     showPromptForm: () => {dispatch(showPromptForm())},
     submitPrompt: (pObj) => {dispatch(addingPromptToProject(pObj))},
-    deletePrompt: (promptId) => {dispatch(deletingPrompt(promptId))}
+    deletePrompt: (promptId) => {dispatch(deletingPrompt(promptId))},
+    handlePromptChange: (promptDraftObj) => {dispatch(changePromptDraft(promptDraftObj))}
   }
 }
 

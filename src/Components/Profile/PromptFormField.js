@@ -10,7 +10,7 @@ const PromptFormField = props => {
       <Button
         icon
         onClick={props.close}
-        floated='right'
+        floated='left'
       compact>
         <Icon name='delete' color='red' />
       </Button>
@@ -43,7 +43,7 @@ const PromptFormField = props => {
                 name='correctAnswer'
                 placeholder='Answer Option A'
                 value={props.promptDraft.correctAnswer}
-                label='A. '
+                label={{color: 'teal', icon: 'check circle'}}
               />
             </Form.Field>
 
@@ -54,7 +54,7 @@ const PromptFormField = props => {
                 name='incorrectAnswerB'
                 placeholder='Answer Option B'
                 value={props.promptDraft.incorrectAnswerB}
-                label='B. '
+                label={{color: 'red', icon: 'times circle'}}
               />
             </Form.Field>
           </Form.Group>
@@ -68,7 +68,7 @@ const PromptFormField = props => {
                 name='incorrectAnswerC'
                 placeholder='Answer Option C'
                 value={props.promptDraft.incorrectAnswerC}
-                label='C. '
+                label={{color: 'red', icon: 'times circle'}}
               />
             </Form.Field>
 
@@ -79,12 +79,17 @@ const PromptFormField = props => {
                 name='incorrectAnswerD'
                 placeholder='Answer Option D'
                 value={props.promptDraft.incorrectAnswerD}
-                label='D. '
+                label={{color: 'red', icon: 'times circle'}}
               />
             </Form.Field>
           </Form.Group>
 
-          <Form.Button type="submit" content='Add' />
+          <Form.Button
+            type="submit"
+            content='Add'
+            color='teal'
+            fluid
+          />
 
         </Form>
       </Card.Content>
@@ -93,8 +98,8 @@ const PromptFormField = props => {
 
 }
 
-const deletePrompt = (e) => {
-
-}
+// const deletePrompt = (e) => {
+//
+// }
 
 export default PromptFormField

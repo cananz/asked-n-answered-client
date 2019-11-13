@@ -202,6 +202,14 @@ function changeDraftSubtitle(text) {
   }
 }
 
+function changePromptDraft(promptObj) {
+  // debugger
+  return {
+    type: 'CHANGE_PROMPT_DRAFT',
+    payload: {...promptObj}
+  }
+}
+
 function addingPromptToProject(promptObj) {
   let configObj = {
     method: 'PATCH',
@@ -217,7 +225,7 @@ function addingPromptToProject(promptObj) {
     .then(response => response.json())
     .then(returnProjectsList => {
       dispatch(addedPrompt(returnProjectsList))
-      
+
       dispatch(showPromptForm())
     })
   }
@@ -272,5 +280,6 @@ export {
   changeDraftSubtitle,
   initiatingNewProject,
   showPromptForm,
-  deletingPrompt
+  deletingPrompt,
+  changePromptDraft
 }

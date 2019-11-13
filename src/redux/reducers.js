@@ -80,6 +80,15 @@ const currentUserReducer = (state = initialState.currentUser, action) => {
             title: '',
             subtitle: '',
             user_id: action.payload.id
+          },
+          promptDraft: {
+            content: '',
+            img: '',
+            correctAnswer: '',
+            incorrectAnswerB: '',
+            incorrectAnswerC: '',
+            incorrectAnswerD: ''
+
           }
       }
     case 'FETCHED_USER_PROJECTS':
@@ -109,8 +118,22 @@ const currentUserReducer = (state = initialState.currentUser, action) => {
         }
     case 'ADDED_PROMPT_TO_PROJECT':
       return {...state,
+        promptDraft: {
+          content: '',
+          img: '',
+          correctAnswer: '',
+          incorrectAnswerB: '',
+          incorrectAnswerC: '',
+          incorrectAnswerD: ''
+
+        },
         projects: action.payload//[...state.projects, action.payload]
       }
+    case 'CHANGE_PROMPT_DRAFT':
+    // debugger
+      return {...state,
+      promptDraft: {...state.promptDraft, ...action.payload}
+    }
     case 'DELETED_PROMPT_FROM_PROJECT':
       return {...state, projects: [...state.projects.filter(proj => proj.id !== action.payload.id), action.payload]
       }
