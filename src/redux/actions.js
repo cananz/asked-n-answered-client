@@ -3,6 +3,7 @@ const PROJECT_URL = 'http://localhost:3000/projects'
 const SESSION_URL = 'http://localhost:3000/sessions'
 const LIVE_SESSIONS_URL = 'http://localhost:3000/sessions/live'
 const PROMPT_URL = 'http://localhost:3000/prompts'
+
 // const SESSION_URL = 'http://localhost:3000/sessions/11U8J'
 
 //on app load - get list of pins for only live sessions
@@ -43,7 +44,7 @@ function logOut() {
 function loggedOut() {
   return {
     type: 'LOG_OUT'
-  }  
+  }
 }
 
 function fetchingUserProjects(userId) {
@@ -275,6 +276,33 @@ function deletedPrompt(returnObj) {
   }
 }
 
+function toggleSession(projId) {
+
+  let configObj = {
+    method: 'PATCH',
+    headers: {
+      "Content-Type" : "application/json",
+      "Accept" : "application/json"
+    },
+    body: JSON.stringify({id: projId})
+  }
+
+  return (dispatch) => {
+    fetch(`${PROJECT_URL}/${projId}/toggle`, configObj)
+    .then(response => response.json())
+    .then(projObj => {
+      dispatch(toggledSession(projObj))
+    })
+  }
+}
+
+function toggledSession(projObj) {
+  return {
+    type: 'TOGGLE_SESSION',
+    payload: projObj
+  }
+}
+
 export {
   addingPromptToProject,
   fetchingLiveSessions,
@@ -294,5 +322,6 @@ export {
   showPromptForm,
   deletingPrompt,
   changePromptDraft,
-  logOut
+  logOut,
+  toggleSession
 }

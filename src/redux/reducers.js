@@ -140,6 +140,12 @@ const currentUserReducer = (state = initialState.currentUser, action) => {
     case 'LOG_OUT':
       return initialState.currentUser
 
+    case 'TOGGLE_SESSION':
+      return {...state,
+        projects: state.projects.map(proj => proj.id === action.payload.id ? action.payload : proj)
+
+      }
+
     default: return state
   }
 }

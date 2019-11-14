@@ -25,7 +25,7 @@ class LandingPage extends React.Component {
     return (
 
 
-  <Segment color='black' inverted vertical textAlign='center'>
+  <Segment vertical textAlign='center'>
 
     {/* <Link to='/session/11U8J'>
       <p>Enter Session</p>
@@ -35,12 +35,12 @@ class LandingPage extends React.Component {
       value={this.state.pinInput}
       onChange={this.handlePinChange} />
     <button onClick={() => this.props.fetchingSession()} /> */}
+    <Image floated='left' size='large' src="https://images.pexels.com/photos/355988/pexels-photo-355988.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" />
     <Message color='black' size="massive">
       <Grid verticalAlign='middle' columns={2}>
         <Grid.Row>
           <Grid.Column stretched width={5}>
 
-            <Image src="http://media.virbcdn.com/cdn_images/resize_500x500/0d/00995da8bf77b1b9-doggywhitewebsite.jpg" />
           </Grid.Column>
 
           <Grid.Column width={11}>
@@ -66,7 +66,7 @@ class LandingPage extends React.Component {
       <Card.Group>
 
         <LoginForm />
-        
+
 
         <JoinSessionForm />
       </Card.Group>

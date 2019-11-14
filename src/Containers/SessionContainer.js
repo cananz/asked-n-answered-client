@@ -35,7 +35,7 @@ class SessionContainer extends Component {
               <PromptsContainer prompts={this.props.session.prompts} />
             :
             <Loader />}
-            {/* <Button fluid /> */}
+            <Button fluid />
           </Container>
         </Container>)
   }

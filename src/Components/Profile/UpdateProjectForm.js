@@ -1,10 +1,10 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {Segment, Form, Card, Placeholder, Loader, Image, Container, Icon, Button} from 'semantic-ui-react'
+import {Segment, Statistic, Checkbox, Form, Card, Placeholder, Loader, Image, Container, Icon, Button} from 'semantic-ui-react'
 import PromptFormField from './PromptFormField'
 import ShowPromptCard from './ShowPromptCard'
 // import PromptsContainer from '../../Containers/PromptsContainer'
-import {showPromptForm, addingPromptToProject, deletingPrompt, changePromptDraft} from '../../redux/actions'
+import {showPromptForm, addingPromptToProject, deletingPrompt, changePromptDraft, toggleSession} from '../../redux/actions'
 
 
 class UpdateProjectForm extends Component {
@@ -74,10 +74,27 @@ class UpdateProjectForm extends Component {
     console.log('my projects props for prompts = ', this.props.project.prompts);
     return (
         <Segment inverted>
+          <Card fluid>
+            <Card.Content>
+              <Checkbox
+                label={this.props.project.live ? 'LIVE!' : 'NOT LIVE'}
+                toggle
+                floated='left'
+                onChange={() => this.props.toggleSession(this.props.project.id)}
+                checked={this.props.project.live} />
+
+              <Statistic floated='right'>
+                <Statistic.Value>
+                  {this.props.project.pin}
+                </Statistic.Value>
+              </Statistic>
+            </Card.Content>
+          </Card>
           <Card fluid centered>
             <Card.Content textAlign='center'>
               <Card.Header>{this.props.project.title}</Card.Header>
               <Card.Meta>{this.props.project.subtitle}</Card.Meta>
+
             </Card.Content>
           </Card>
 
@@ -136,6 +153,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = dispatch => {
   return {
     showPromptForm: () => {dispatch(showPromptForm())},
+    toggleSession: (projId) => {dispatch(toggleSession(projId))},
     submitPrompt: (pObj) => {dispatch(addingPromptToProject(pObj))},
     deletePrompt: (promptId) => {dispatch(deletingPrompt(promptId))},
     handlePromptChange: (promptDraftObj) => {dispatch(changePromptDraft(promptDraftObj))}

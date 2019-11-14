@@ -5,6 +5,8 @@ import {fetchingLiveSessions} from './redux/actions'
 import LandingPageContainer from './Containers/LandingPageContainer'
 import SessionContainer from './Containers/SessionContainer'
 import ProfileContainer from './Containers/ProfileContainer'
+import './App.css';
+
 
 class App extends Component {
 

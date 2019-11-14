@@ -1,3 +1,25 @@
-.App {
+/* .App {
   text-align: center;
+} */
+
+/* body {
+  background-image: url("https://images.pexels.com/photos/132340/pexels-photo-132340.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+} */
+body {
+  background-image: url("https://images.pexels.com/photos/355952/pexels-photo-355952.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+}
+/* body {
+  background-image: url("https://images.pexels.com/photos/1939485/pexels-photo-1939485.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+} */
+
+
+
+/* .content-background-image {
+    background-image: url("https://wallpaper.wiki/wp-content/uploads/2017/06/Gradient-Wallpaper.jpg");
+    padding: 50px 0 50px 0;
+} */
+
+
+.landing. {
+  background-image: 'https://images.pexels.com/photos/355988/pexels-photo-355988.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940';
 }
