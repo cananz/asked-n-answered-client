@@ -50,6 +50,7 @@ class ProjectMenu extends Component {
                 key={project.id}
                 active={this.props.activeProjectTab === project.id}
                 id={project.id}
+                className='project-select'
                 onClick={this.onClick}
               />)}
           </Menu>

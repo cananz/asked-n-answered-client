@@ -30,7 +30,7 @@ class ProfileContainer extends Component {
 
 
           <ProjectMenu />
-          
+
 
       </Message>
       </Container>

@@ -25,7 +25,7 @@ class LandingPage extends React.Component {
     return (
 
 
-  <Segment vertical textAlign='center'>
+  <Container fluid textAlign='center'>
 
     {/* <Link to='/session/11U8J'>
       <p>Enter Session</p>
@@ -35,29 +35,39 @@ class LandingPage extends React.Component {
       value={this.state.pinInput}
       onChange={this.handlePinChange} />
     <button onClick={() => this.props.fetchingSession()} /> */}
-    <Image floated='left' size='large' src="https://images.pexels.com/photos/355988/pexels-photo-355988.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" />
-    <Message color='black' size="massive">
+
+    <Message size="massive">
+      <Image floated='left' size='large' src="https://images.pexels.com/photos/355988/pexels-photo-355988.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" />
       <Grid verticalAlign='middle' columns={2}>
         <Grid.Row>
-          <Grid.Column stretched width={5}>
+          {/* <Grid.Column width={1}> </Grid.Column> */}
+          {/* <Grid.Column stretched width={6}> */}
+            {/* <Image size='massive' src="https://images.pexels.com/photos/355988/pexels-photo-355988.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" /> */}
 
-          </Grid.Column>
+            {/* </Grid.Column> */}
 
-          <Grid.Column width={11}>
+          <Grid.Column width={10}>
 
-            <Container color='black'>
-              <Header inverted size="huge" as="h1">
-                Asked-N-Answered
+            <Container fluid>
+              <Header className='shadows font' size="huge" as="h1">
+                Asked
               </Header>
-              <p>
+              <Header className='shadows font' size="huge" as="h1">
+                -N-
+              </Header>
+              <Header className='shadows font' size="huge" as="h1">
+                Answered
+              </Header>
+              {/* <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-              </p>
+              </p> */}
               {/* <Button size="large" primary>
                 Learn more &raquo;
               </Button> */}
 
             </Container>
           </Grid.Column>
+          {/* <Grid.Column width={1}> </Grid.Column> */}
         </Grid.Row>
         <Grid.Row>
 
@@ -71,7 +81,8 @@ class LandingPage extends React.Component {
         <JoinSessionForm />
       </Card.Group>
     </Message>
-  </Segment>
+
+  </Container>
 
 
 

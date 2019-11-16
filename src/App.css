@@ -1,25 +1,55 @@
-/* .App {
-  text-align: center;
-} */
 
-/* body {
-  background-image: url("https://images.pexels.com/photos/132340/pexels-photo-132340.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
-} */
 body {
-  background-image: url("https://images.pexels.com/photos/355952/pexels-photo-355952.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+  background-image: url("https://dollarfootage.com/wp-content/uploads/2017/08/Abstract-business-background-newsroom-geometric-futuristic-field-white-with-black-lines-2-HD-img.jpg");
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 /* body {
   background-image: url("https://images.pexels.com/photos/1939485/pexels-photo-1939485.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
 } */
 
+a.project.select {
+  background-color:
+}
 
+div.header.shadows.font {
+  font-family: 'Shadows Into Light', cursive;
+}
+.header.shadows.font {
+  font-family: 'Shadows Into Light', cursive;
+  font-size: 4em;
+
+}
 
 /* .content-background-image {
     background-image: url("https://wallpaper.wiki/wp-content/uploads/2017/06/Gradient-Wallpaper.jpg");
     padding: 50px 0 50px 0;
 } */
+.ui.message {
+  background-color: #f8f8f9ad;
+}
 
+div.ui.inverted.segment
 
 .landing. {
   background-image: 'https://images.pexels.com/photos/355988/pexels-photo-355988.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940';
+}
+
+.landing {
+  /* The image used */
+  background-image: url('https://images.pexels.com/photos/355988/pexels-photo-355988.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940';);
+
+  /* Add the blur effect */
+  filter: blur(8px);
+  -webkit-filter: blur(8px);
+
+  /* Full height */
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }

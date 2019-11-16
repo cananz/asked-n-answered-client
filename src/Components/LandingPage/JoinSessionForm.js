@@ -1,5 +1,5 @@
 import React from 'react'
-import {Card, Button, Form} from 'semantic-ui-react'
+import {Card, Button, Form, Message} from 'semantic-ui-react'
 import {pinInputChange, fetchingSession, checkPin} from '../../redux/actions'
 import {connect} from 'react-redux'
 import {Link, withRouter} from 'react-router-dom'
@@ -7,7 +7,13 @@ import {Link, withRouter} from 'react-router-dom'
 const handlePinSubmit = (e, props) => {
   e.preventDefault()
   // props.onSubmit(props.pinInput)
-  props.history.push("/sessions/" + props.pinInput)
+  // debugger
+  if (props.pinIsValid) {
+
+    props.history.push("/sessions/" + props.pinInput)
+  }else{
+
+  }
 
 }
 
@@ -21,23 +27,24 @@ const JoinSessionForm = props => {
     <Card centered>
 
       <Card.Content>
-        <Card.Header>Join a Session</Card.Header>
+        <Card.Header className='shadows font'>Join a Session</Card.Header>
 
         <Form size='massive' onSubmit={e => handlePinSubmit(e, props)}>
           <Form.Input
             placeholder='Pin'
             value={props.pinInput}
             type='text'
-            onChange={e => props.onChange(e.target.value)}
+            onChange={e => props.onChange(e.target.value.toUpperCase())}
           />
 
           <Button
-            disabled={!props.pinIsValid}
             color='grey'
             size='massive'
-            type='submit'>
-          Join
-          </Button>
+            type='submit'
+            content='Join'
+            disabled={!props.pinIsValid}
+          />
+
         </Form>
       </Card.Content>
 

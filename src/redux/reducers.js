@@ -166,7 +166,8 @@ const landingPageReducer = (state=initialState.landingPage, action) => {
       return {...state, liveSessions: action.payload}
 
     case 'PIN_IS_VALID':
-      return {...state, pinIsValid: !state.pinIsValid}
+    let {liveSessions, pinInput} = state
+      return {...state, pinIsValid: liveSessions.includes(pinInput)}
     case 'PIN_INPUT_CHANGE':
       return {...state, pinInput: action.payload}
     case 'LOGIN_INPUT_CHANGE':
