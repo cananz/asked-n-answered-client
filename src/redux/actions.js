@@ -23,6 +23,7 @@ function fetchedLiveSessions(liveSessionsList) {
 function loggingIn() {
   return dispatch => {
     fetch(USER_URL)
+    // fetch(`${USER_URL}/${emailText}`)
     .then(response => response.json())
     .then(userData => dispatch(setCurrentUser(userData)))
   }
@@ -237,6 +238,7 @@ function addingPromptToProject(promptObj) {
     fetch(`${PROJECT_URL}/${promptObj.project_id}`, configObj)
     .then(response => response.json())
     .then(returnProjectsList => {
+      
       dispatch(addedPrompt(returnProjectsList))
 
       dispatch(showPromptForm())
@@ -276,6 +278,32 @@ function deletedPrompt(returnObj) {
   }
 }
 
+function deleteProject(projectId) {
+  let configObj = {
+    method: 'DELETE',
+    headers: {
+      "Content-Type" : "application/json",
+      "Accept" : "application/json"
+    }
+  }
+
+  return (dispatch) => {
+    fetch(`${PROJECT_URL}/${projectId}`)
+    .then(response => response.json())
+    .then(returnProjList => {
+      dispatch(deletedProject(returnProjList))
+      dispatch(loadNewProjectForm())
+    })
+  }
+}
+
+function deletedProject(returnProjList) {
+  return {
+    type: 'DELETED_PROJECT_FROM_USER',
+    payload: returnProjList
+  }
+}
+
 function toggleSession(projId) {
 
   let configObj = {
@@ -304,6 +332,7 @@ function toggledSession(projObj) {
 }
 
 export {
+  deleteProject,
   addingPromptToProject,
   fetchingLiveSessions,
   selectProject,
