@@ -10,7 +10,15 @@ class LoginForm extends Component {
   handleLogIn = (e) => {
     e.preventDefault()
     // console.log(this.props)
-    this.props.history.push("/profile/" + '1')
+    // let profileName = this.props.emailText.split('@')[0]
+
+    // debugger
+    this.props.history.push("/profile/1")
+    // this.props.history.push("/profile/" + profileName)
+  }
+
+  signUp = () => {
+    console.log('sign up')
   }
 
   render() {
@@ -31,6 +39,7 @@ class LoginForm extends Component {
               name="email"
               placeholder="Email address"
               type="text"
+              onChange={(e) => props.onChange(e.target.value)}
               value={props.emailText}
             />
             <Form.Input
@@ -42,7 +51,7 @@ class LoginForm extends Component {
             <Button color='grey' size="large" type="submit" onClick={this.handleLogIn}>
               Log In
             </Button>
-            <Button color='grey' size="large">
+            <Button color='grey' size="large" onClick={this.signUp}>
               Sign Up
             </Button>
           </Form>

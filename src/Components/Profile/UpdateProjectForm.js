@@ -4,7 +4,7 @@ import {Segment, Statistic, Checkbox, Form, Card, Placeholder, Loader, Image, Co
 import PromptFormField from './PromptFormField'
 import ShowPromptCard from './ShowPromptCard'
 // import PromptsContainer from '../../Containers/PromptsContainer'
-import {showPromptForm, addingPromptToProject, deletingPrompt, changePromptDraft, toggleSession} from '../../redux/actions'
+import {showPromptForm, addingPromptToProject, deletingPrompt, changePromptDraft, toggleSession, deleteProject} from '../../redux/actions'
 
 
 class UpdateProjectForm extends Component {
@@ -65,8 +65,15 @@ class UpdateProjectForm extends Component {
   }
 
   deletePrompt = e => {
+
     console.log('delete', e.target.parentElement);
     this.props.deletePrompt(e.target.parentElement.id)
+  }
+
+  handleDeleteProject = (e) => {
+    e.preventDefault()
+    console.log('deleting project', this.props.activeProjectTab)
+    this.props.deleteProject(this.props.activeProjectTab)
   }
 
 
@@ -83,12 +90,15 @@ class UpdateProjectForm extends Component {
                 onChange={() => this.props.toggleSession(this.props.project.id)}
                 checked={this.props.project.live} />
 
+
+
               <Statistic floated='right'>
                 <Statistic.Value>
                   {this.props.project.pin}
                 </Statistic.Value>
               </Statistic>
             </Card.Content>
+            <Button content='Delete Project' color='red' onClick={this.handleDeleteProject} />
           </Card>
           <Card fluid centered>
             <Card.Content textAlign='center'>
@@ -156,7 +166,10 @@ const mapDispatchToProps = dispatch => {
     toggleSession: (projId) => {dispatch(toggleSession(projId))},
     submitPrompt: (pObj) => {dispatch(addingPromptToProject(pObj))},
     deletePrompt: (promptId) => {dispatch(deletingPrompt(promptId))},
-    handlePromptChange: (promptDraftObj) => {dispatch(changePromptDraft(promptDraftObj))}
+    handlePromptChange: (promptDraftObj) => {dispatch(changePromptDraft(promptDraftObj))},
+    deleteProject: (projectId) => {
+      dispatch(deleteProject(projectId))
+    }
   }
 }
 

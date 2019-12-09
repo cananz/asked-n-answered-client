@@ -47,6 +47,7 @@ class ProfileContainer extends Component {
 
 const mapStateToProps = state => {
   return {
+    emailText: {...state.landingPage.emailText},
     currentUser: {...state.currentUser},
     page: {...state.page}
   }

@@ -10,7 +10,7 @@ let initialState = {
     pinInput: '', //11U8J
     liveSessions: [],
     pinIsValid: false,
-    emailText: 'marisa@email.com'
+    emailText: '' //'marisa@email.com'
   },
   currentUser: {
     id: '',
@@ -143,8 +143,9 @@ const currentUserReducer = (state = initialState.currentUser, action) => {
     case 'TOGGLE_SESSION':
       return {...state,
         projects: state.projects.map(proj => proj.id === action.payload.id ? action.payload : proj)
-
       }
+    case 'DELETED_PROJECT_FROM_USER':
+      return {...state, projects: action.payload}
 
     default: return state
   }

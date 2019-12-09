@@ -21,7 +21,7 @@ class App extends Component {
         <Switch>
           <Route path="/sessions/:pin"
             component={SessionContainer} />
-          <Route path="/profile/:id" component={ProfileContainer} />
+          <Route path="/profile/:username" component={ProfileContainer} />
           <Route path="/" component={LandingPageContainer} />
         </Switch>
 
