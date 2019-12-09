@@ -58,7 +58,8 @@ function loggedOut() {
 
 function fetchingUserProjects(userId) {
   return dispatch => {
-    fetch(USER_URL + `/${userId}/projects`)
+    fetch(USER_URL + `/projects`)
+    // fetch(USER_URL + `/${userId}/projects`)
     .then(response => response.json())
     .then(projectsData => dispatch(fetchedUserProjects(projectsData)))
   }
