@@ -1,5 +1,6 @@
 // heroku urls
 // https://asked-answered-api.herokuapp.com
+
 const USER_URL = 'https://asked-answered-api.herokuapp.com/users/1'
 const PROJECT_URL = 'https://asked-answered-api.herokuapp.com/projects'
 const SESSION_URL = 'https://asked-answered-api.herokuapp.com/sessions'
@@ -13,7 +14,7 @@ const PROMPT_URL = 'https://asked-answered-api.herokuapp.com/prompts'
 // const LIVE_SESSIONS_URL = 'http://localhost:3000/sessions/live'
 // const PROMPT_URL = 'http://localhost:3000/prompts'
 
-// const SESSION_URL = 'http://localhost:3000/sessions/11U8J'
+
 
 //on app load - get list of pins for only live sessions
 function fetchingLiveSessions() {
@@ -56,7 +57,7 @@ function loggedOut() {
   }
 }
 
-function fetchingUserProjects(userId) {
+function fetchingUserProjects() {
   return dispatch => {
     fetch(USER_URL + `/projects`)
     // fetch(USER_URL + `/${userId}/projects`)
