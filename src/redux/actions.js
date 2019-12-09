@@ -1,8 +1,17 @@
-const USER_URL = 'http://localhost:3000/users/1'
-const PROJECT_URL = 'http://localhost:3000/projects'
-const SESSION_URL = 'http://localhost:3000/sessions'
-const LIVE_SESSIONS_URL = 'http://localhost:3000/sessions/live'
-const PROMPT_URL = 'http://localhost:3000/prompts'
+// heroku urls
+// https://asked-answered-api.herokuapp.com
+const USER_URL = 'https://asked-answered-api.herokuapp.com/users/1'
+const PROJECT_URL = 'https://asked-answered-api.herokuapp.com/projects'
+const SESSION_URL = 'https://asked-answered-api.herokuapp.com/sessions'
+const LIVE_SESSIONS_URL = 'https://asked-answered-api.herokuapp.com/sessions/live'
+const PROMPT_URL = 'https://asked-answered-api.herokuapp.com/prompts'
+
+// localhost urls
+// const USER_URL = 'http://localhost:3000/users/1'
+// const PROJECT_URL = 'http://localhost:3000/projects'
+// const SESSION_URL = 'http://localhost:3000/sessions'
+// const LIVE_SESSIONS_URL = 'http://localhost:3000/sessions/live'
+// const PROMPT_URL = 'http://localhost:3000/prompts'
 
 // const SESSION_URL = 'http://localhost:3000/sessions/11U8J'
 
