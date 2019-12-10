@@ -2,7 +2,8 @@ import React, { Component } from "react";
 // import { Route, Switch, withRouter } from "react-router-dom";
 import {connect} from 'react-redux'
 import {changeView, fetchingSession} from '../redux/actions'
-import {Container, Loader, Button, Sticky} from 'semantic-ui-react'
+import {Container, Loader, Button, Sticky, Segment, Menu} from 'semantic-ui-react'
+
 import NavBar from '../Components/Session/NavBar'
 import ProgressBar from '../Components/Session/ProgressBar'
 import PromptsContainer from './PromptsContainer'
@@ -22,14 +23,18 @@ class SessionContainer extends Component {
 
       return (
         <Container fluid>
-          <Sticky>
-            {/* <Container fluid> */}
-            <NavBar />
-            {/* </Container> */}
-          </Sticky>
+
+          {/* <Sticky> */}
+          <Container fluid>
+
+            <Menu attached="top" borderless>
+              <NavBar />
+            </Menu>
+          </Container>
+          {/* </Sticky> */}
 
           <Container fluid>
-            <ProgressBar />
+            {/* <ProgressBar /> */}
 
             {this.props.session.prompts ?
               <PromptsContainer prompts={this.props.session.prompts} />
@@ -37,6 +42,9 @@ class SessionContainer extends Component {
             <Loader />}
             <Button fluid />
           </Container>
+          <Menu fixed="bottom" fitted>
+            <Menu.Item>p bar</Menu.Item>
+          </Menu>
         </Container>)
   }
 }
