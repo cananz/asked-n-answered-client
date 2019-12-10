@@ -2,16 +2,27 @@
 body {
   background-image: url("https://dollarfootage.com/wp-content/uploads/2017/08/Abstract-business-background-newsroom-geometric-futuristic-field-white-with-black-lines-2-HD-img.jpg");
 
+  /* background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover; */
+
+/* Create the parallax scrolling effect */
+  background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+
 }
 /* body {
   background-image: url("https://images.pexels.com/photos/1939485/pexels-photo-1939485.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
 } */
 
+.ui.fluid.container.prompts {
+  margin-top: 12em;
+}
+
 a.project.select {
-  background-color:
+  /* background-color: */
 }
 
 div.header.shadows.font {
