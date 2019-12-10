@@ -1,35 +1,43 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 // import ProgressIcons from './ProgressIcon'
-import {Container, Progress, Segment, Header} from 'semantic-ui-react'
+import {
+  // Container,
+  Progress,
+  Segment,
+  Rating
+  // Header
+} from 'semantic-ui-react'
 
 
 class ProgressBar extends Component {
 
   render() {
-    // console.log('prompt count = ', this.promptCount())
 
-    console.log('ProgressBar = ',this.props);
-
-    // <Container textAlign='center'>
-    // {/* <Segment></Segment> */}
     return (
 
-      <Container text>
+      <Segment basic textAlign="justified">
+        {/* <Segment attached="bottom" textAlign="center"> */}
 
-        <Progress
+        {/* <Progress
           inverted
-          size='large'
           progress='ratio'
           value={this.props.numOfAnswers}
           total={this.props.numOfPrompts}
           color='black'
+        /> */}
+
+        <Rating
+          disabled
+          rating={this.props.numOfAnswers}
+          maxRating={this.props.numOfPrompts}
+          size="huge"
         />
-      </Container>
+      </Segment>
     )
   }
 }
-// </Container>
+
 
 
 
