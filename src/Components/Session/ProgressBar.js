@@ -19,20 +19,13 @@ class ProgressBar extends Component {
      <Segment attached="bottom" inverted textAlign="center">
 
        <Progress
-           inverted
-           progress='ratio'
-           value={this.props.numOfAnswers}
-           total={this.props.numOfPrompts}
-           color="blue"
-         />
-
-         {/* <Rating
-           //     disabled
-           //     rating={this.props.numOfAnswers}
-           //     maxRating={this.props.numOfPrompts}
-           //     size="huge"
-         //   /> */}
-
+         inverted
+         progress='ratio'
+         value={this.props.numOfAnswers}
+         total={this.props.numOfPrompts}
+         color="blue"
+       />
+       
      </Segment>
     )
   }
