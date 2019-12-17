@@ -35,16 +35,19 @@ class SessionContainer extends Component {
             </Sticky>
 
 
-            <Container fluid>
+            {/* <Container fluid> */}
 
-              {this.props.session.prompts ?
-                <PromptsContainer prompts={this.props.session.prompts} />
-              :
-              <Loader />}
-              {/* <Button fluid /> */}
-            </Container>
+            {this.props.session.prompts ?
+              <PromptsContainer prompts={this.props.session.prompts} />
+            :
+            <Loader />}
+            {/* <Button fluid /> */}
+
+            {/* </Container> */}
 
             {/* <Menu fixed="bottom"></Menu> */}
+
+            
           </div>)
   }
 }
