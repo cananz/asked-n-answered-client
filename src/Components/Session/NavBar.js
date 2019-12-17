@@ -10,7 +10,8 @@ const NavBar = props => {
   return (
 
 
-  <Segment attached="bottom" secondary>
+  <Segment attached="top" secondary>
+
 
     <Grid verticalAlign='middle'>
 
@@ -23,6 +24,7 @@ const NavBar = props => {
             {props.host ? props.host : null}
           </Statistic.Value>
         </Statistic>
+
       </Grid.Column>
 
       {/*  center - title */}
@@ -44,7 +46,7 @@ const NavBar = props => {
 
 
     </Grid>
-
+    {/* <ProgressBar /> */}
 
   </Segment>
 
