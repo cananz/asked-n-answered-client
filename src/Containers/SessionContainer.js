@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, createRef } from "react";
 // import { Route, Switch, withRouter } from "react-router-dom";
 import {connect} from 'react-redux'
 import {changeView, fetchingSession} from '../redux/actions'
@@ -17,35 +17,35 @@ class SessionContainer extends Component {
     // debugger
   }
 
+  sessionRef = createRef()
+
   render() {
     console.log('session container props = ', this.props)
     // let {session} = this.props
 
       return (
-        <Container fluid>
+          <div ref={this.sessionRef}>
 
-          {/* <Sticky> */}
-          <Container fluid>
+            {/* <Menu fixed="top" borderless> */}
+            <NavBar />
+            {/* </Menu> */}
 
-            <Menu attached="top" borderless>
-              <NavBar />
-            </Menu>
-          </Container>
-          {/* </Sticky> */}
+            <Sticky context={this.sessionRef}>
+              <ProgressBar />
+            </Sticky>
 
-          <Container fluid>
-            {/* <ProgressBar /> */}
 
-            {this.props.session.prompts ?
-              <PromptsContainer prompts={this.props.session.prompts} />
-            :
-            <Loader />}
-            <Button fluid />
-          </Container>
-          <Menu fixed="bottom" fitted>
-            <Menu.Item>p bar</Menu.Item>
-          </Menu>
-        </Container>)
+            <Container fluid>
+
+              {this.props.session.prompts ?
+                <PromptsContainer prompts={this.props.session.prompts} />
+              :
+              <Loader />}
+              {/* <Button fluid /> */}
+            </Container>
+
+            {/* <Menu fixed="bottom"></Menu> */}
+          </div>)
   }
 }
 const mapStateToProps = state => {
