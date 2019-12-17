@@ -2,7 +2,7 @@ import React, { Component, createRef } from "react";
 // import { Route, Switch, withRouter } from "react-router-dom";
 import {connect} from 'react-redux'
 import {changeView, fetchingSession} from '../redux/actions'
-import {Container, Loader, Button, Sticky, Segment, Menu} from 'semantic-ui-react'
+import {Container, Loader, Button, Rail, Sticky, Segment, Menu} from 'semantic-ui-react'
 
 import NavBar from '../Components/Session/NavBar'
 import ProgressBar from '../Components/Session/ProgressBar'
@@ -19,9 +19,15 @@ class SessionContainer extends Component {
 
   sessionRef = createRef()
 
+  submitAnswers = (e) => {
+    console.log(e)
+  }
+
   render() {
-    console.log('session container props = ', this.props)
+    // console.log('session container props = ', this.props)
     // let {session} = this.props
+    console.log('sessionRef =    ', this.sessionRef)
+    // console.log('window =    ', this)
 
       return (
           <div ref={this.sessionRef}>
@@ -37,17 +43,37 @@ class SessionContainer extends Component {
 
             {/* <Container fluid> */}
 
+
+            <Sticky
+              context={this.sessionRef}
+              pushing
+              bottomOffset={1}
+              offset={200}
+            >
+              <Segment basic clearing>
+                <Button
+                  color="blue"
+                  floated="right"
+                  content="Submit Answers"
+                  onClick={this.submitAnswers}
+                />
+              </Segment>
+            </Sticky>
+
+
+
+
+
             {this.props.session.prompts ?
               <PromptsContainer prompts={this.props.session.prompts} />
             :
             <Loader />}
-            {/* <Button fluid /> */}
 
             {/* </Container> */}
 
-            {/* <Menu fixed="bottom"></Menu> */}
 
-            
+
+
           </div>)
   }
 }
