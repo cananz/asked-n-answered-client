@@ -19,6 +19,7 @@ class ProjectMenu extends Component {
   }
 
   onClick = (e, {id}) => {
+    e.preventDefault()
     if (id === 'new') {
       this.props.newProject()
     }else{
