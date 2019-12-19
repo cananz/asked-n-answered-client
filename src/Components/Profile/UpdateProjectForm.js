@@ -9,15 +9,15 @@ import {showPromptForm, addingPromptToProject, deletingPrompt, changePromptDraft
 
 class UpdateProjectForm extends Component {
 
-  constructor(props) {
-    super(props)
-    this.state = ({...this.props
-    })
+  // constructor(props) {
+  //   super(props)
+  //   this.state = ({...this.props
+  //   })
+  //
+  // }
 
-  }
-
-  // onClick = () => {
-  //   console.log(this.state)
+  // componentDidMount() {
+  //
   // }
 
   handlePromptFormChanges = (e) => {
@@ -56,9 +56,8 @@ class UpdateProjectForm extends Component {
       img: promptDraft.img,
       correctAnswer: promptDraft.correctAnswer,
       incorrectAnswers: [promptDraft.incorrectAnswerB, promptDraft.incorrectAnswerC, promptDraft.incorrectAnswerD],
-      project_id: this.state.activeProjectTab
+      project_id: this.props.activeProjectTab
     }
-
 
     this.props.submitPrompt(promptToSend)
 
