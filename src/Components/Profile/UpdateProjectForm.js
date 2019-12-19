@@ -60,35 +60,49 @@ class UpdateProjectForm extends Component {
     }
 
     this.props.submitPrompt(promptToSend)
-
   }
 
   deletePrompt = e => {
-    console.log('delete', e.target.parentElement);
     this.props.deletePrompt(e.target.parentElement.id)
   }
 
 
   render() {
-    console.log('my projects props for prompts = ', this.props.project.prompts);
+    // console.log('my projects props for prompts = ', this.props.project.prompts);
+    let {project} = this.props
+
+    const showPrompts = this.props.project.prompts.map(prompt =>
+      <ShowPromptCard
+        prompt={prompt}
+        deletePrompt={this.deletePrompt} />
+    )
+
+
     return (
         <Segment inverted>
+          {/* TOGGLE AND PIN CARD */}
           <Card fluid>
             <Card.Content>
+
+              {/* LIVE TOGGLE */}
               <Checkbox
-                label={this.props.project.live ? 'LIVE!' : 'NOT LIVE'}
+                label={project.live ? 'LIVE!' : 'NOT LIVE'}
                 toggle
                 floated='left'
                 onChange={() => this.props.toggleSession(this.props.project.id)}
-                checked={this.props.project.live} />
-
+                checked={this.props.project.live}
+              />
+              {/* PROJECT PIN */}
               <Statistic floated='right'>
                 <Statistic.Value>
                   {this.props.project.pin}
                 </Statistic.Value>
               </Statistic>
+
             </Card.Content>
           </Card>
+
+          {/* PROJECT TITLE & SUBTITLE CARD */}
           <Card fluid centered>
             <Card.Content textAlign='center'>
               <Card.Header>{this.props.project.title}</Card.Header>
