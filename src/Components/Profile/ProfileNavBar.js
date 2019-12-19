@@ -30,6 +30,7 @@ render() {
 
 <Segment clearing inverted>
 
+
   <Header as='h1' floated='left'>Asked-n-Answered</Header>
 
   <Link to='/'>
@@ -39,7 +40,8 @@ render() {
       inverted
     >
       <Icon inverted name='log out' />
-    LogOut</Header>
+      LogOut
+    </Header>
   </Link>
 
 </Segment>

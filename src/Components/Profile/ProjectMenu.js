@@ -20,6 +20,7 @@ class ProjectMenu extends Component {
 
   onClick = (e, {id}) => {
     e.preventDefault()
+    // debugger
     if (id === 'new') {
       this.props.newProject()
     }else{
@@ -30,7 +31,8 @@ class ProjectMenu extends Component {
 
 
   render() {
-    let {projects} = this.props
+    let {projects, activeProjectTab} = this.props
+
     return (
       <Grid>
         <Grid.Column width={4}>
@@ -38,7 +40,7 @@ class ProjectMenu extends Component {
 
             <Menu.Item
               name='Create New'
-              active={this.props.activeProjectTab === 'new'}
+              active={activeProjectTab === 'new'}
               id='new'
               onClick={this.onClick}
             />
@@ -49,7 +51,7 @@ class ProjectMenu extends Component {
               <Menu.Item
                 name={project.title}
                 key={project.id}
-                active={this.props.activeProjectTab === project.id}
+                active={activeProjectTab === project.id}
                 id={project.id}
                 className='project-select'
                 onClick={this.onClick}
@@ -59,11 +61,11 @@ class ProjectMenu extends Component {
 
         <Grid.Column stretched width={12}>
 
-          {this.props.activeProjectTab === 'new' ?
+          {activeProjectTab === 'new' ?
             <NewProjectForm />
           :
           <UpdateProjectForm
-            projectId={this.props.activeProjectTab}
+            projectId={activeProjectTab}
           />
           }
 
