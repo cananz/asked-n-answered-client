@@ -11,13 +11,7 @@ class UpdateProjectForm extends Component {
 
   // constructor(props) {
   //   super(props)
-  //   this.state = ({...this.props
-  //   })
-  //
-  // }
-
-  // componentDidMount() {
-  //
+  //   this.state = ({...this.props})
   // }
 
   handlePromptFormChanges = (e) => {
@@ -39,17 +33,13 @@ class UpdateProjectForm extends Component {
 
     }else if (name === 'incorrectAnswerD') {
         this.props.handlePromptChange({incorrectAnswerD: value})
-
     }
-
-
   }
 
   submitPrompt = e => {
     e.preventDefault()
-    // console.log(this.state.promptDraft)
+
     let {promptDraft} = this.props
-    // let incorrectAnswers = [promptDraft.incorrectAnswerB, promptDraft.incorrectAnswerC, promptDraft.incorrectAnswerD]
 
     let promptToSend = {
       content: promptDraft.content,
@@ -112,22 +102,15 @@ class UpdateProjectForm extends Component {
           </Card>
 
 
-
+          {/* PROMPT CARDS */}
           <Card.Group centered>
-
-            {this.props.project.prompts.map(prompt =>
-
-              <ShowPromptCard
-                prompt={prompt}
-                deletePrompt={this.deletePrompt} />
-
-            )}
-
-
-
+            {project.prompts ? showPrompts : <Loader active />}
           </Card.Group>
+
           <br/>
 
+
+          {/* ADD PROMPT TOGGLE */}
           {this.props.addPrompt ?
             <PromptFormField
               onChange={this.handlePromptFormChanges}
@@ -140,11 +123,6 @@ class UpdateProjectForm extends Component {
               Add Question
             </Button>
           }
-
-
-
-
-
         </Segment>
     )
   }
@@ -174,34 +152,3 @@ const mapDispatchToProps = dispatch => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(UpdateProjectForm)
-
-
-
-
-
-
-
-
-              //
-              //
-              // (<Card key={prompt.id} centered>
-              //
-              //
-              //   <Image fluid
-              //     label={{ as: 'a', id: prompt.id, color: 'red', corner: 'right', icon: 'delete', onClick: this.deletePrompt}}
-              //
-              //     src={prompt.img ? prompt.img : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbu0YXGvzhEkGw5NFoj4DGiTeoq3FlBrdBGgzFbdSJiLipQQly&s"} />
-              //   <Card.Content verticalAlign='middle'>
-              //     <Card.Header>{prompt.content}</Card.Header>
-              //   </Card.Content>
-              //   <Card.Content extra>
-              //     <p><Icon name='check circle' color='teal' /> {prompt.correctAnswer.content}</p>
-              //     <p><Icon name='times circle' color='red' />
-              //       {prompt.incorrectAnswers[0].content}</p>
-              //     <p><Icon name='times circle' color='red' />
-              //       {prompt.incorrectAnswers[1].content}</p>
-              //     <p><Icon name='times circle' color='red' />
-              //       {prompt.incorrectAnswers[2].content}</p>
-              //   </Card.Content>
-              //
-              // </Card>)
