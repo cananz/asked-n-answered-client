@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, createRef } from "react";
 import { withRouter } from "react-router-dom";
 import {connect} from 'react-redux'
 import {loggingIn, changeView} from '../redux/actions'
@@ -15,25 +15,30 @@ class ProfileContainer extends Component {
 
   }
 
+  profileRef = createRef()
+
   render() {
 
     let {currentUser} = this.props
     // console.log('currentUser = ', currentUser)
 
     return (
-
-      <Container fluid>
-        <Sticky>
-          <ProfileNavBar />
-        </Sticky>
-        <Message color='grey' size="massive">
-
-
-          <ProjectMenu />
+      <div ref={this.profileRef}>
+        <Container fluid>
+          <Sticky context={this.profileRef}>
+            <ProfileNavBar />
+          </Sticky>
 
 
-      </Message>
-      </Container>
+          <Message color='grey' size="massive">
+
+
+            <ProjectMenu />
+
+
+          </Message>
+        </Container>
+      </div>
     )
   }
 
