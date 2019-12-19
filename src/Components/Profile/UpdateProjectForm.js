@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {Segment, Statistic, Checkbox, Form, Card, Placeholder, Loader, Image, Container, Icon, Button} from 'semantic-ui-react'
+import {Segment, Statistic, Checkbox, Card, Loader, Button} from 'semantic-ui-react'
 import PromptFormField from './PromptFormField'
 import ShowPromptCard from './ShowPromptCard'
 // import PromptsContainer from '../../Containers/PromptsContainer'
