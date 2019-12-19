@@ -18,7 +18,7 @@ class ProfileContainer extends Component {
   render() {
 
     let {currentUser} = this.props
-    console.log('currentUser = ', currentUser)
+    // console.log('currentUser = ', currentUser)
 
     return (
 
