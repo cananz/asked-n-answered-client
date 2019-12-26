@@ -10,6 +10,8 @@ const handlePinSubmit = (e, props) => {
   // debugger
   if (props.pinIsValid) {
 
+  if (props.pinIsValid) {
+    props.clearInput()
     props.history.push("/sessions/" + props.pinInput)
   }else{
 
@@ -66,7 +68,8 @@ const mapDispatchToProps = dispatch => {
     onChange: (pinInput) => {
       dispatch(pinInputChange(pinInput))
       dispatch(checkPin(pinInput))
-    }
+    },
+    clearInput: () => {dispatch(pinInputChange(""))}
     // onSubmit: (pin) => {dispatch(fetchingSession(pin))}
   }
 }
