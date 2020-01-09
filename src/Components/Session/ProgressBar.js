@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 // import ProgressIcons from './ProgressIcon'
 import {
-  // Container,
+  Button,
   Progress,
   Segment,
   Rating

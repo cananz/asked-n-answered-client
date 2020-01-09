@@ -14,13 +14,14 @@ class PromptsContainer extends Component {
     console.log('inside PromptsContainer prompts = ', prompts)
     return (
       <Container textAlign='center'>
+
         <Card.Group centered itemsPerRow={1}>
-          {/* <PromptCard /> */}
-          {/* {this.props.project ? <PromptCards project={this.props.pro} /> : <Loader active />} */}
+
+
           {prompts.map(prompt => <PromptCard key={prompt.id} promptId={prompt.id} />)}
 
         </Card.Group>
-        
+
       </Container>
     )
   }
