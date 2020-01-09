@@ -17,7 +17,7 @@ const ShowPromptCard = props => {
         src={prompt.img ? prompt.img : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbu0YXGvzhEkGw5NFoj4DGiTeoq3FlBrdBGgzFbdSJiLipQQly&s"} />
 
 
-      <Card.Content verticalAlign='middle'>
+      <Card.Content>
 
         <Card.Header>{prompt.content}</Card.Header>
 
