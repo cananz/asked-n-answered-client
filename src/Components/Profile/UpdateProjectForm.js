@@ -61,7 +61,7 @@ class UpdateProjectForm extends Component {
     // console.log('my projects props for prompts = ', this.props.project.prompts);
     let {project} = this.props
 
-    const showPrompts = this.props.project.prompts.map(prompt =>
+    const showPrompts = project.prompts.map(prompt =>
       <ShowPromptCard
         prompt={prompt}
         deletePrompt={this.deletePrompt} />
