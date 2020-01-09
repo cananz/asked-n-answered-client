@@ -73,14 +73,7 @@ function fetchedUserProjects(projectsData) {
   }
 }
 
-//loaded -> fetching (fetch) -> fetched (updating store)
-// function fetchingProject(projectId) {
-//   return (dispatch) => {
-//     fetch(PROJECT_URL + `/${projectId}`)
-//     .then(response => response.json())
-//     .then(projectData => dispatch(fetchedProject(projectData)))
-//   }
-// }
+
 
 function selectProject(project) {
   return {
@@ -122,21 +115,6 @@ function fetchedSession(session) {
     payload: session
   }
 }
-
-// function fetchedSession(session) {
-//   return {
-//     type: 'FETCHED_SESSION',
-//     payload: session
-//   }
-// }
-
-
-
-
-
-
-
-
 
 //landingPage
 function pinInputChange(value) {

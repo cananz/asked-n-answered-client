@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 // import {Route, withRouter} from 'react-router-dom'
 // import {connect} from 'react-redux'
 
-import {Container, Card, Loader} from 'semantic-ui-react'
+import {Container, Card, Loader, Input, Message} from 'semantic-ui-react'
 import PromptCard from '../Components/Session/PromptCard'
 
 class PromptsContainer extends Component {
@@ -14,13 +14,15 @@ class PromptsContainer extends Component {
     console.log('inside PromptsContainer prompts = ', prompts)
     return (
       <Container textAlign='center'>
+        {/* <Message><Input focus placeholder='Name...' /></Message> */}
+
         <Card.Group centered itemsPerRow={1}>
-          {/* <PromptCard /> */}
-          {/* {this.props.project ? <PromptCards project={this.props.pro} /> : <Loader active />} */}
+
+
           {prompts.map(prompt => <PromptCard key={prompt.id} promptId={prompt.id} />)}
 
         </Card.Group>
-        
+
       </Container>
     )
   }

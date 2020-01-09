@@ -177,16 +177,6 @@ const landingPageReducer = (state=initialState.landingPage, action) => {
   }
 }
 
-// const projectsReducer = (state = initialState.currentUser.projects, action) => {
-//   switch (action.type) {
-//     case 'FETCHED_PROJECTS':
-//       return action.payload
-//     default:
-//       return state
-//
-//   }
-// }
-
 const sessionReducer = (state = initialState.session, action) => {
   // debugger
   switch (action.type) {

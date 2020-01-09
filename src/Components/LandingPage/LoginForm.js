@@ -38,13 +38,13 @@ class LoginForm extends Component {
               placeholder="Password"
               type="password"
             />
-
+            
             <Button color='grey' size="large" type="submit" onClick={this.handleLogIn}>
               Log In
             </Button>
-            <Button color='grey' size="large">
+            {/* <Button color='grey' size="large" disabled>
               Sign Up
-            </Button>
+            </Button> */}
           </Form>
 
         </Card.Content>

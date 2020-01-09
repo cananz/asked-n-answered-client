@@ -2,7 +2,7 @@ import React, { Component, createRef } from "react";
 // import { Route, Switch, withRouter } from "react-router-dom";
 import {connect} from 'react-redux'
 import {changeView, fetchingSession} from '../redux/actions'
-import {Container, Loader, Button, Rail, Sticky, Segment, Menu} from 'semantic-ui-react'
+import {Container, Loader, Button, Rail, Sticky, Segment, Menu, Message, Input} from 'semantic-ui-react'
 
 import NavBar from '../Components/Session/NavBar'
 import ProgressBar from '../Components/Session/ProgressBar'
@@ -32,9 +32,7 @@ class SessionContainer extends Component {
       return (
           <div ref={this.sessionRef}>
 
-            {/* <Menu fixed="top" borderless> */}
             <NavBar />
-            {/* </Menu> */}
 
             <Sticky context={this.sessionRef}>
               <ProgressBar />
@@ -60,9 +58,7 @@ class SessionContainer extends Component {
               </Segment>
             </Sticky>
 
-
-
-
+            {/* <Message><Input placeholder='Name...' /></Message> */}
 
             {this.props.session.prompts ?
               <PromptsContainer prompts={this.props.session.prompts} />
@@ -80,10 +76,8 @@ class SessionContainer extends Component {
 const mapStateToProps = state => {
   return {
     session: state.session,
-
     page: state.page,
     pin: state.landingPage.pinInput
-    // ...state.session, ...state.page, ...state
   }
 }
 
