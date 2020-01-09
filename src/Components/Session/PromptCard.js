@@ -49,8 +49,14 @@ class PromptCard extends React.Component {
 
 
 
-      <Image size='medium' src={prompt.img} />
-        <Card.Content verticalAlign='middle'>
+        <Image
+          size='medium'
+          src={prompt.img}
+          centered
+          verticalAlign="middle"
+
+        />
+        <Card.Content>
 
           <Card.Header>
             {prompt ? prompt.content : null}
