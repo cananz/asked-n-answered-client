@@ -25,7 +25,14 @@ class ProgressBar extends Component {
          total={this.props.numOfPrompts}
          color="blue"
        />
+       {/* submit button appears when all questions answered */}
+       {/* {this.props.numOfAnswers === this.props.numOfPrompts ? <Button content="Submit"/> : <Button disabled content="Submit" />} */}
+
        
+       {/* <Button
+         content="Submit Answers"
+       /> */}
+
      </Segment>
     )
   }
