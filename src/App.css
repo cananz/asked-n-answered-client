@@ -49,7 +49,9 @@ div.header.shadows.font {
   background-color: #f8f8f9ad;
 }
 
-div.ui.inverted.segment
+.ui.progress:last-child {
+  margin: 0
+}
 
 .landing. {
   background-image: 'https://images.pexels.com/photos/355988/pexels-photo-355988.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940';
