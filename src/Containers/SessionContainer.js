@@ -20,14 +20,12 @@ class SessionContainer extends Component {
   sessionRef = createRef()
 
   submitAnswers = (e) => {
-    console.log(e)
+    console.log('e.target = ', e.target)
+    console.log("this = ", this)
+    
   }
 
   render() {
-    // console.log('session container props = ', this.props)
-    // let {session} = this.props
-    console.log('sessionRef =    ', this.sessionRef)
-    // console.log('window =    ', this)
 
       return (
           <div ref={this.sessionRef}>
@@ -38,37 +36,18 @@ class SessionContainer extends Component {
               <ProgressBar />
             </Sticky>
 
-
-            {/* <Container fluid> */}
-
-
-            <Sticky
-              context={this.sessionRef}
-              pushing
-              bottomOffset={1}
-              offset={200}
-            >
-              <Segment basic clearing>
-                <Button
-                  color="blue"
-                  floated="right"
-                  content="Submit Answers"
-                  onClick={this.submitAnswers}
-                />
-              </Segment>
-            </Sticky>
-
-            {/* <Message><Input placeholder='Name...' /></Message> */}
-
             {this.props.session.prompts ?
               <PromptsContainer prompts={this.props.session.prompts} />
             :
             <Loader />}
 
-            {/* </Container> */}
-
-
-
+            <div className="submit-button">
+              <Button
+                color="teal"
+                content="Submit Answers"
+                onClick={this.submitAnswers}
+              />
+            </div>
 
           </div>)
   }

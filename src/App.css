@@ -17,8 +17,15 @@ body {
   background-image: url("https://images.pexels.com/photos/1939485/pexels-photo-1939485.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
 } */
 
-.ui.fluid.container.prompts {
-  margin-top: 12em;
+div.submit-button {
+  position: fixed;
+  bottom: 2em;
+  right: 2em;
+}
+
+div.ui.centered.one.cards {
+  margin-top: 1em;
+  margin-bottom: 4em;
 }
 
 a.project.select {
