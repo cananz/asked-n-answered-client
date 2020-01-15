@@ -11,7 +11,7 @@ class PromptsContainer extends Component {
 
   render() {
     let {prompts} = this.props
-    console.log('inside PromptsContainer prompts = ', prompts)
+    // console.log('inside PromptsContainer prompts = ', prompts)
     return (
       <Container textAlign='center'>
         {/* <Message><Input focus placeholder='Name...' /></Message> */}

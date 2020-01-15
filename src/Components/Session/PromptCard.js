@@ -34,20 +34,12 @@ class PromptCard extends React.Component {
 
   render() {
 
-    console.log('prompt card = ', this.state)
+    // console.log('prompt card = ', this.state)
     let {prompt} = this.props
 
     return (
 
       <Card>
-
-
-
-
-
-
-
-
 
         <Image
           size='medium'
