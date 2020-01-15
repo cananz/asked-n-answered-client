@@ -2,12 +2,12 @@ import React, { Component, createRef } from "react";
 // import { Route, Switch, withRouter } from "react-router-dom";
 import {connect} from 'react-redux'
 import {changeView, fetchingSession} from '../redux/actions'
-import {Container, Loader, Button, Rail, Sticky, Segment, Menu, Message, Input} from 'semantic-ui-react'
+import {Container, Loader, Button, Rail, Sticky, Segment, Menu, Message, Input, Card} from 'semantic-ui-react'
 
 import NavBar from '../Components/Session/NavBar'
 import ProgressBar from '../Components/Session/ProgressBar'
-import PromptsContainer from './PromptsContainer'
-
+// import PromptsContainer from './PromptsContainer'
+import PromptCard from '../Components/Session/PromptCard'
 
 
 class SessionContainer extends Component {
@@ -22,8 +22,10 @@ class SessionContainer extends Component {
   submitAnswers = (e) => {
     console.log('e.target = ', e.target)
     console.log("this = ", this)
-    
+
   }
+
+
 
   render() {
 
@@ -36,10 +38,22 @@ class SessionContainer extends Component {
               <ProgressBar />
             </Sticky>
 
-            {this.props.session.prompts ?
-              <PromptsContainer prompts={this.props.session.prompts} />
-            :
-            <Loader />}
+            {/* <PromptsContainer prompts={this.props.session.prompts} /> */}
+            
+            <Container textAlign='center'>
+
+              {this.props.session.prompts ?
+                (<Card.Group centered itemsPerRow={1}>
+
+                  {this.props.session.prompts.map(prompt => <PromptCard key={prompt.id} promptId={prompt.id} />)}
+                </Card.Group>)
+              :
+              <Loader active />
+              }
+
+            </Container>
+
+
 
             <div className="submit-button">
               <Button
