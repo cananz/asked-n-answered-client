@@ -14,18 +14,15 @@ class PromptCard extends React.Component {
         id: prompt.id,
         content: prompt.content,
         img: prompt.img,
-        correctAnswer: prompt.correctAnswer,
-        incorrectAnswers: prompt.incorrectAnswers
-
+        answers: prompt.answers
     }
   }
 
 
-
-
-
   handleChange = (e, {value}) => {
+
     e.preventDefault()
+
     this.setState({selected: value})
 
     this.props.onSelect({...this.state, selected: value})
@@ -34,8 +31,7 @@ class PromptCard extends React.Component {
 
   render() {
 
-    // console.log('prompt card = ', this.state)
-    let {prompt} = this.props
+    let {prompt, answers} = this.props
 
     return (
 
@@ -46,67 +42,42 @@ class PromptCard extends React.Component {
           src={prompt.img}
           centered
           verticalAlign="middle"
-
         />
+
         <Card.Content>
 
+          {/* ---QUESTION--- */}
           <Card.Header>
             {prompt ? prompt.content : null}
           </Card.Header>
 
+          {/* ---ANSWERS--- */}
+          {answers.map(answer =>
+            (<Form.Field as='h3' key={answer.id}>
+              <Radio
+                checked={this.state.selected === answer.id}
+                label={answer.content}
+                value={answer.id}
+                onChange={this.handleChange}
+              />
+            </Form.Field>)
+          )}
 
-
-
-          <Form.Field as='h3'>
-            <Radio
-              checked={this.state.selected === prompt.incorrectAnswers[1].id}
-              name={prompt.id}
-              label={prompt.incorrectAnswers[1].content}
-              value={prompt.incorrectAnswers[1].id}
-              onChange={this.handleChange}
-            />
-          </Form.Field>
-
-          <Form.Field as='h3'>
-            <Radio
-              checked={this.state.selected === prompt.incorrectAnswers[2].id}
-              name={prompt.id}
-              label={prompt.incorrectAnswers[2].content}
-              value={prompt.incorrectAnswers[2].id}
-              onChange={this.handleChange}
-            />
-          </Form.Field>
-
-          <Form.Field as='h3'>
-            <Radio
-              checked={this.state.selected === prompt.correctAnswer.id}
-              name={prompt.id}
-              label={prompt.correctAnswer.content}
-              value={prompt.correctAnswer.id}
-              onChange={this.handleChange}
-            />
-          </Form.Field>
-
-          <Form.Field as='h3'>
-            <Radio
-              checked={this.state.selected === prompt.incorrectAnswers[0].id}
-              name={prompt.id}
-              label={prompt.incorrectAnswers[0].content}
-              value={prompt.incorrectAnswers[0].id}
-              onChange={this.handleChange}
-            />
-          </Form.Field>
         </Card.Content>
 
-        </Card>
+      </Card>
     )
   }
 
 }
 
+
 const mapStateToProps = (state, ownProps) => {
+  let prompt = state.session.prompts.find(p => p.id === ownProps.promptId)
+
   return {
-    prompt: state.session.prompts.find(p => p.id === ownProps.promptId)
+    prompt: prompt,
+    answers: prompt.answers
   }
 }
 
