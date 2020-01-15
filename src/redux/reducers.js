@@ -35,16 +35,16 @@ let profileState = {
   }
 }
 
-let questionState = {
-  id: '',
-  content: '',
-  correctAnswer: {
-    id: '',
-    content: '',
-    correct: true
-  },
-  incorrectAnswers: []
-}
+// let questionState = {
+//   id: '',
+//   content: '',
+//   correctAnswer: {
+//     id: '',
+//     content: '',
+//     correct: true
+//   },
+//   incorrectAnswers: []
+// }
 
 let quizModeState = {
   id: '',
@@ -177,19 +177,19 @@ const landingPageReducer = (state=initialState.landingPage, action) => {
   }
 }
 
-const sessionReducer = (state = initialState.session, action) => {
-  // debugger
-  switch (action.type) {
-    case 'FETCHED_SESSION':
-      return {...action.payload}
-    case 'SELECT_ANSWER':
-      return {
-        ...state, prompts: state.prompts.map(p => p.id === action.payload.id ? action.payload : p)
-      }
-    default:
-      return state
-  }
-}
+// const sessionReducer = (state = initialState.session, action) => {
+//   // debugger
+//   switch (action.type) {
+//     case 'FETCHED_SESSION':
+//       return {...action.payload}
+//     case 'SELECT_ANSWER':
+//       return {
+//         ...state, prompts: state.prompts.map(p => p.id === action.payload.id ? action.payload : p)
+//       }
+//     default:
+//       return state
+//   }
+// }
 
 const quizModeReducer = (state = quizModeState, action) => {
 
