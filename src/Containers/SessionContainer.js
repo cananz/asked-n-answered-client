@@ -28,6 +28,9 @@ class SessionContainer extends Component {
 
   }
 
+  checkAnswers = (e) => {
+    console.log('checking')
+  }
 
 
   render() {
@@ -42,7 +45,7 @@ class SessionContainer extends Component {
             </Sticky>
 
             {/* <PromptsContainer prompts={this.props.session.prompts} /> */}
-            
+
             <Container textAlign='center'>
 
               {this.props.session.prompts ?
@@ -64,6 +67,12 @@ class SessionContainer extends Component {
                 content="Submit Answers"
                 onClick={this.submitAnswers}
               />
+
+              {/* <Button
+                content="Check Answers"
+                onClick={this.checkAnswers}
+              /> */}
+
             </div>
 
           </div>)
