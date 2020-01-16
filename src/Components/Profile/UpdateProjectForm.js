@@ -57,17 +57,11 @@ class UpdateProjectForm extends Component {
   }
 
 
+
+
   render() {
     // console.log('my projects props for prompts = ', this.props.project.prompts);
     let {project} = this.props
-
-    const showPrompts = project.prompts.map(prompt =>
-      <ShowPromptCard
-        prompt={prompt}
-        key={prompt.id}
-        deletePrompt={this.deletePrompt} />
-    )
-
 
     return (
         <Segment inverted>
@@ -76,19 +70,21 @@ class UpdateProjectForm extends Component {
             <Card.Content>
 
               {/* LIVE TOGGLE */}
-              <Checkbox
+              {/* <Checkbox
                 label={project.live ? 'LIVE!' : 'NOT LIVE'}
                 toggle
                 floated='left'
                 onChange={() => this.props.toggleSession(this.props.project.id)}
                 checked={this.props.project.live}
-              />
+              /> */}
+
               {/* PROJECT PIN */}
-              <Statistic floated='right'>
-                <Statistic.Value>
-                  {this.props.project.pin}
-                </Statistic.Value>
-              </Statistic>
+              <Statistic
+                color="teal"
+                value={project.pin}
+                label="pin"
+                floated="right"
+              />
 
             </Card.Content>
           </Card>
@@ -104,9 +100,21 @@ class UpdateProjectForm extends Component {
 
 
           {/* PROMPT CARDS */}
-          <Card.Group centered>
-            {project.prompts ? showPrompts : <Loader active />}
-          </Card.Group>
+
+          {project.prompts ?
+            (<Card.Group centered>
+              {project.prompts.map(prompt =>
+                <ShowPromptCard
+                  prompt={prompt}
+                  key={prompt.id}
+                  deletePrompt={this.deletePrompt}
+                />
+              )}
+            </Card.Group>)
+          :
+          <Loader active />
+          }
+
 
           <br/>
 
