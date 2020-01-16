@@ -20,8 +20,11 @@ class SessionContainer extends Component {
   sessionRef = createRef()
 
   submitAnswers = (e) => {
-    console.log('e.target = ', e.target)
-    console.log("this = ", this)
+    let {numOfAnswers, numOfPrompts} = this.props.session
+
+    // check if all questions were answered
+    console.log(numOfAnswers === numOfPrompts ? 'all questions answered' : "don't leave anything blank")
+
 
   }
 
