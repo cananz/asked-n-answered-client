@@ -1,8 +1,8 @@
 import React, { Component, createRef } from "react";
 // import { Route, Switch, withRouter } from "react-router-dom";
 import {connect} from 'react-redux'
-import {changeView, fetchingSession} from '../redux/actions'
-import {Container, Loader, Button, Rail, Sticky, Segment, Menu, Message, Input, Card} from 'semantic-ui-react'
+import {changeView, fetchingSession, submitAnswers} from '../redux/actions'
+import {Container, Loader, Button, Rail, Sticky, Segment, Menu, Message, Input, Card, Modal, Icon} from 'semantic-ui-react'
 
 import NavBar from '../Components/Session/NavBar'
 import ProgressBar from '../Components/Session/ProgressBar'
@@ -11,19 +11,28 @@ import PromptCard from '../Components/Session/PromptCard'
 
 
 class SessionContainer extends Component {
+  state = { submitModalOpen: false }
+
   componentDidMount(){
     this.props.fetchingSession(this.props.match.params.pin)
     this.props.changeView("session")
-    // debugger
   }
 
   sessionRef = createRef()
 
-  submitAnswers = (e) => {
-    let {numOfAnswers, numOfPrompts} = this.props.session
+  handleOpen = () => this.setState({ submitModalOpen: true })
 
-    // check if all questions were answered
-    console.log(numOfAnswers === numOfPrompts ? 'all questions answered' : "don't leave anything blank")
+  handleClose = () => this.setState({ submitModalOpen: false })
+
+  submitAnswers = (e) => {
+    this.handleClose()
+    this.props.onSubmit()
+
+    this.props.history.replace('/')
+    // debugger
+
+
+
 
 
   }
@@ -34,6 +43,7 @@ class SessionContainer extends Component {
 
 
   render() {
+    let {numOfAnswers, numOfPrompts} = this.props.session
 
       return (
           <div ref={this.sessionRef}>
@@ -62,11 +72,43 @@ class SessionContainer extends Component {
 
 
             <div className="submit-button">
-              <Button
-                color="teal"
-                content="Submit Answers"
-                onClick={this.submitAnswers}
-              />
+              <Modal
+                trigger={
+                  <Button
+                    color="teal"
+                    content="Submit Answers"
+                    onClick={this.handleOpen}
+                  />}
+                open={this.state.submitModalOpen}
+                onClose={this.handleClose}
+              >
+
+
+                <Modal.Header>
+                  {numOfAnswers === numOfPrompts ?
+                    `Did you check your answers?`
+                  :
+                  `Make sure you answer every question before you submit!`}
+                </Modal.Header>
+
+                <Modal.Actions>
+                  <Button
+                    onClick={this.handleClose}
+                    content="Back"
+                  />
+
+                  {numOfAnswers === numOfPrompts ?
+                    <Button
+                      onClick={this.submitAnswers}
+                      content="Submit!"
+                      positive
+                    />
+                  : null}
+                </Modal.Actions>
+
+              </Modal>
+
+
 
               {/* <Button
                 content="Check Answers"
@@ -89,7 +131,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     fetchingSession: (pin) => {dispatch(fetchingSession(pin))},
-    changeView: (view) => {dispatch(changeView(view))}
+    changeView: (view) => {dispatch(changeView(view))},
+    onSubmit: () => {dispatch(submitAnswers())}
   }
 }
 

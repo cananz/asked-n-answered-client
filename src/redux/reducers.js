@@ -226,7 +226,8 @@ const quizModeReducer = (state = quizModeState, action) => {
         })
 
       }
-
+      case 'SUBMIT_QUIZ_ANSWERS':
+      return quizModeState
     default:
       return state
   }

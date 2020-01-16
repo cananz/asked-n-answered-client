@@ -57,6 +57,18 @@ function loggedOut() {
   }
 }
 
+function submitAnswers() {
+  return dispatch => {
+    dispatch(quizSubmitted())
+  }
+}
+
+function quizSubmitted() {
+  return {
+    type: 'SUBMIT_QUIZ_ANSWERS'
+  }
+}
+
 function fetchingUserProjects() {
   return dispatch => {
     fetch(USER_URL + `/projects`)
@@ -312,5 +324,6 @@ export {
   deletingPrompt,
   changePromptDraft,
   logOut,
+  submitAnswers,
   toggleSession
 }
