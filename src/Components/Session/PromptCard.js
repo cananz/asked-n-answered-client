@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
-import {Card, Loader, Item, Button, Image, Form, Radio} from 'semantic-ui-react'
+import {Card, Image, Form, Radio} from 'semantic-ui-react'
 import {selectingAnswer} from '../../redux/actions'
 
 class PromptCard extends React.Component {
@@ -36,6 +36,7 @@ class PromptCard extends React.Component {
     return (
 
       <Card>
+        {/* <Card color={this.state.selected ? 'grey' : 'red'}> */}
 
         <Image
           size='medium'
